@@ -1,0 +1,168 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="layout-page">
+      <app-admin-header></app-admin-header>
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <!-- Main Content -->
+          <div class="card">
+            <h5 class="card-header">All Company Internship offers ({{counter}})</h5>
+            <div class="table-responsive text-nowrap">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th class="border-top-0">Internship Title</th>
+                    <th colspan="2" class="border-top-0">Internship Description</th>
+                    <th class="border-top-0">Level Of Study</th>
+                    <th class="border-top-0">Start Date</th>
+                    <th class="border-top-0">End Date</th>
+                    <th class="border-top-0">Is Payed</th>
+                    <th class="border-top-0">Money</th>
+
+                    <th class="border-top-0">Duration</th>
+
+                    <th class="border-top-0">Location</th>
+                    <th class="border-top-0">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                  <tr *ngFor="let item of dataArray  | paginate: { itemsPerPage: 10, currentPage: p } ">
+                    <td>{{item.titre_offre}}</td>
+                    <td colspan="2">
+                      <div class="offer-description">{{item.description}}</div>
+                    </td>
+                    <td>{{item.niveau_etude}}</td>
+                    <td>{{item.start_date}}</td>
+                    <td>{{item.end_date}}</td>
+
+                    <td>
+                      <span *ngIf="item.is_payed == true" class="badge bg-label-success me-1">{{item.is_payed}}</span>
+                      <span *ngIf="item.is_payed == false" class="badge bg-label-danger me-1">{{item.is_payed}}</span>
+                    </td>
+                    <td>
+                      <span *ngIf="item.is_payed == true">{{item.salaire}} TND</span>
+                      <span *ngIf="item.is_payed == false"></span>
+                    </td>
+                    <td>{{item.duration}} Month(s)</td>
+                    <td>{{item.location}}</td>
+
+                    <td>
+
+                      <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bxs-navigation me-1"></i>
+                          Consulter</a>
+                        <a class="dropdown-item"
+                          (click)="getdata(item.titre_offre,item.description,item.niveau_etude,item.start_date,item.end_date,item.is_payed,item.salaire,item.duration,item.location,item.id)"
+                          data-toggle="modal" data-target="#basicModal" href="javascript:void(0);"><i
+                            class="bx bx-edit me-1"></i>
+                          edit</a>
+                        <a class="dropdown-item" (click)="deleteinternshipoffre(item.id)" href="javascript:void(0);"><i
+                            class="bx bx-trash me-1"></i>
+                          Delete</a>
+
+                      </div>
+
+                    </td>
+                  </tr>
+                  <tr *ngIf="dataArray.length === 0">
+                    <td colspan="10">
+                      <div class="empty-table-message">No Data Found</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div style="text-align:right;">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
+
+
+              <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel1">Update Internship</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form [formGroup]="update" #f="ngForm" (ngSubmit)="updateInternship(f); f.reset()">
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Internship Title</label>
+                          <input type="text" formControlName="titre_offre" [(ngModel)]="dataIntern.titre_offre" ngModel
+                            class="form-control" required>
+
+                          <label for="exampleFormControlInput1">Internship Description</label>
+                          <textarea type="text" formControlName="description" [(ngModel)]="dataIntern.description"
+                            ngModel class="form-control larger-textarea" required></textarea>
+
+                          <label for="exampleFormControlInput1">Is Payed</label>
+
+                          <select class="form-control" id="exampleFormControlSelect1" formControlName="is_payed"
+                            [(ngModel)]="dataIntern.is_payed" ngModel placeholder="Select a salary...">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                          </select>
+
+                          <label for="exampleFormControlInput1">Start Date</label>
+                          <input type="date" formControlName="start_date" [(ngModel)]="dataIntern.start_date" ngModel
+                            class="form-control" required>
+
+                          <label for="exampleFormControlInput1">End Date</label>
+                          <input type="date" formControlName="end_date" [(ngModel)]="dataIntern.end_date" ngModel
+                            class="form-control" required>
+
+                          <label for="exampleFormControlInput1">Level Of Study</label>
+
+                          <select class="form-control" id="exampleFormControlSelect1" formControlName="niveau_etude"
+                            [(ngModel)]="dataIntern.niveau_etude" ngModel placeholder="Select a level of study...">
+                            <option value="MoinsBac">Without Bac</option>
+                            <option value="Bac">BAC</option>
+                            <option value="Bac+1">BAC +1</option>
+                            <option value="Bac+2">BAC +2</option>
+                            <option value="Bac+3">BAC +3</option>
+                            <option value="Bac+4">BAC +4</option>
+                            <option value="Bac+5">BAC +5</option>
+                            <option value="Mastere">Master</option>
+                            <option value="Ingenieur">Engeneer</option>
+                            <option value="PlusqueBac+5">More then Bac +5</option>
+                            <option value="Formation">Formation</option>
+                            <option value="Autre">Others</option>
+                          </select>
+
+                          <label for="exampleFormControlInput1">Salary</label>
+                          <input type="text" formControlName="salaire" [(ngModel)]="dataIntern.salaire" ngModel
+                            class="form-control" required>
+
+                          <label for="exampleFormControlInput1">Duration</label>
+                          <input type="text" formControlName="duration" [(ngModel)]="dataIntern.duration" ngModel
+                            class="form-control" required>
+
+                          <label for="exampleFormControlInput1">Location</label>
+                          <input type="text" formControlName="location" [(ngModel)]="dataIntern.location" ngModel
+                            class="form-control" required>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                          </button>
+                          <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

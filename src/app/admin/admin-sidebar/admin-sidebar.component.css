@@ -1,0 +1,11 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Add some padding to the body to make up for the navbar being fixed */
+body {
+  padding-top: 60px;
+}

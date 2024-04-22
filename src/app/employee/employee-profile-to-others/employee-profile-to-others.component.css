@@ -1,0 +1,19 @@
+.box-company-profile {
+    max-width: 90%;
+    display: table;
+    table-layout: fixed;
+    margin: auto;
+    width: 100%;
+    padding: 20px 0px 0px 0px;
+    position: relative;
+  }
+  .image-compay {
+    position: absolute;
+    top: -80px;
+    left: 0px;
+  }
+  .image-compay img {
+    width: 85px; /* Adjust the width as per your design */
+    height: 85px; /* Adjust the height as per your design */
+    border-radius: 16px;
+  }

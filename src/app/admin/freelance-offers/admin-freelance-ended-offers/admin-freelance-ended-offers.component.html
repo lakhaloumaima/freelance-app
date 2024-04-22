@@ -1,0 +1,80 @@
+
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <app-admin-sidebar></app-admin-sidebar>
+        <div class="layout-page">
+            <app-admin-header></app-admin-header>
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <!-- Main Content -->
+                    <div class="card">
+                        <h5 class="card-header">    ({{counter}}) All Ended Freelance offers</h5>
+                        <div class="table-responsive text-nowrap">
+                          <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th class="border-top-0">Status</th>
+                                <th class="border-top-0">Mission Title</th>
+                                <th colspan="2" class="border-top-0">Mission Description</th>
+                                <th class="border-top-0">Level Of Study</th>
+                                <th class="border-top-0">Start Date</th>
+                                <th class="border-top-0">end Date</th>
+                                <th class="border-top-0">Mission Salary</th>
+                                <th class="border-top-0">Is Completed</th>
+                                <th class="border-top-0">Location</th>
+                                <th class="border-top-0">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                              <tr *ngFor="let item of dataArray  | paginate: { itemsPerPage: 10, currentPage: p } ">
+                                <td>
+                                  <span *ngIf="item.etat == 'Accepted'" class="badge bg-label-success me-1">{{item.etat}}</span>
+                                </td>
+                                <td>{{item.offre.titre_offre}}</td>
+                                <td colspan="2">
+                                  <div class="offer-description">{{item.description}}</div>
+                                </td>
+                                <td>{{item.offre.niveau_etude}}</td>
+                                <td>{{item.offre.start_date}}</td>
+                                <td>{{item.offre.end_date}}</td>
+                                <td>{{item.offre.salaire}} TND</td>
+                                <td>
+                                  <span *ngIf="item.offre.is_completed == true"
+                                    class="badge bg-label-success me-1">{{item.offre.is_completed}}</span>
+                                    <span *ngIf="item.offre.is_completed == false"
+                                    class="badge bg-label-danger me-1">{{item.offre.is_completed}}</span>
+
+                                </td>
+                                <td>{{item.offre.location}}</td>
+
+                                <td>
+
+                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                  </button>
+                                  <div class="dropdown-menu">
+
+                                    <a class="dropdown-item" href="javascript:void(0);"
+                                      (click)="deleteEndedFreelanceOffer(item.id)"><i class="bx bx-trash me-1"></i>
+                                      Delete</a>
+                                  </div>
+
+                                </td>
+                              </tr>
+                              <tr *ngIf="dataArray.length === 0">
+                                <td colspan="10">
+                                  <div class="empty-table-message">No Data Found</div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div style="text-align:right;">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

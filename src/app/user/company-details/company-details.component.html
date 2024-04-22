@@ -1,0 +1,99 @@
+<div *ngIf="currentuser && currentuser.role =='employee'">
+  <app-employee-header></app-employee-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='stagiaire'">
+  <app-intern-header></app-intern-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='freelancer'">
+  <app-freelancer-header></app-freelancer-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='admin'">
+  <app-admin-header></app-admin-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='superadmin'">
+  <app-superadmin-header></app-superadmin-header>
+</div>
+<div *ngIf="!currentuser">
+  <app-header></app-header>
+</div>
+
+<main class="main">
+  <section class="section-box-2">
+    <div class="container">
+      <div class="banner-hero banner-image-single"><img [src]="userdatadata.user_image_url1" ></div>
+      <div class="box-company-profile">
+        <div class="image-compay"><img [src]="userdatadata.user_image_url" ></div>
+        <div class="row mt-10">
+          <div class="col-lg-8 col-md-12">
+            <h5 class="f-18">{{userdatadata.firstname}} <span class="card-location font-regular ml-20">{{userdatadata.adress}}</span></h5>
+          </div>
+          <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn  btn-apply btn-apply-big" href="mailto:{{userdatadata.email}}"><i class='bx bx-envelope'></i> Contact Our Company</a></div>
+        </div>
+      </div>
+      <div class="border-bottom pt-10 pb-10"></div>
+    </div>
+  </section>
+  <section class="section-box mt-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+          <div class="content-single">
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="tab-about" role="tabpanel" aria-labelledby="tab-about">
+                <h4>Welcome to {{userdatadata.firstname}}</h4>
+                <p>{{userdatadata.society_description}}</p>
+
+              </div>
+              <div class="tab-pane fade" id="tab-recruitments" role="tabpanel" aria-labelledby="tab-recruitments">
+                <h4>Recruitments</h4>
+                <p>The AliStudio Design team has a vision to establish a trusted platform that enables productive and healthy enterprises in a world of digital and remote everything, constantly changing work patterns and norms, and the need for organizational resiliency.</p>
+                <p>The ideal candidate will have strong creative skills and a portfolio of work which demonstrates their passion for illustrative design and typography. This candidate will have experiences in working with numerous different design platforms such as digital and print forms.</p>
+              </div>
+              <div class="tab-pane fade" id="tab-people" role="tabpanel" aria-labelledby="tab-people">
+                <h4>People</h4>
+                <p>The AliStudio Design team has a vision to establish a trusted platform that enables productive and healthy enterprises in a world of digital and remote everything, constantly changing work patterns and norms, and the need for organizational resiliency.</p>
+                <p>The ideal candidate will have strong creative skills and a portfolio of work which demonstrates their passion for illustrative design and typography. This candidate will have experiences in working with numerous different design platforms such as digital and print forms.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+          <div class="sidebar-border">
+            <div class="sidebar-heading">
+              <div class="avatar-sidebar">
+                <figure *ngIf="userdatadata"><img alt="TuniOffers" [src]="userdatadata.user_image_url"></figure>
+
+                <div class="sidebar-info pl-0"><span class="sidebar-company" *ngIf="userdatadata">{{userdatadata.firstname}}</span><span class="card-location" *ngIf="userdatadata">{{userdatadata.adress}}</span></div>
+              </div>
+            </div>
+              <div class="sidebar-list-job">
+                <div class="box-map">
+                  <iframe
+                  width="300"
+                  height="225"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51757.48801548368!2d10.576854864404208!3d35.82832752001887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130275759ac9d10d%3A0x698e3915682cef7d!2sSousse!5e0!3m2!1sfr!2stn!4v1684587818085!5m2!1sfr!2stn"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+            <div class="sidebar-list-job">
+              <ul>
+                <li>
+                  <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
+                  <div class="sidebar-text-info"><span class="text-description">Company field</span><strong class="small-heading">Informatique</strong></div>
+                </li>
+                <li>
+                  <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
+                  <div class="sidebar-text-info"><span class="text-description">Location</span><strong class="small-heading">{{userdatadata.adress}}</strong></div>
+                </li>
+                <li>
+                  <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
+                  <div class="sidebar-text-info"><span class="text-description">Member since</span><strong class="small-heading">{{userdatadata.created_at | date:'mediumDate'}}</strong></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

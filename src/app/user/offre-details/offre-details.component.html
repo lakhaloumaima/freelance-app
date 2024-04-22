@@ -1,0 +1,205 @@
+<app-header></app-header>
+<main class="main">
+  <section class="section-box-2" *ngFor=" let item of dataArray">
+    <div class="container">
+      <div class="banner-hero banner-image-single"><img src="assets/imgs/page/job-single/thumb.png"></div>
+      <div class="row mt-10">
+        <div class="col-lg-8 col-md-12">
+          <h3>{{item.titre_offre}}</h3>
+          <div class="mt-0 mb-15"><span class="card-briefcase">{{item.type_contrat}}</span><span class="card-time">3
+              mins ago</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 text-lg-end">
+          <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal"
+            data-bs-target="#ModalApplyJobForm">Apply now</div>
+        </div>
+      </div>
+      <div class="border-bottom pt-10 pb-10"></div>
+    </div>
+  </section>
+  <section class="section-box mt-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+          <div class="job-overview">
+            <h5 class="border-bottom pb-15 mb-30">Employment Information</h5>
+            <div class="row">
+            </div>
+            <div class="row mt-25">
+
+
+              <div class="col-md-6 d-flex">
+                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/industry.svg"></div>
+                <div class="sidebar-text-info ml-10"><span *ngFor=" let item of dataArray"
+                    class="text-description industry-icon mb-10"> {{
+                    item?.offre_categories[0]?.souscategorie?.categorie?.domain?.domain_name }}</span><strong
+                    *ngFor=" let item of dataArray" class="small-heading">
+                    {{ item?.offre_categories[0]?.souscategorie?.categorie?.categorie_name }}</strong></div>
+              </div>
+
+              <div class="col-md-6 d-flex">
+                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/experience.svg"></div>
+                <div class="sidebar-text-info ml-10" *ngFor=" let item of dataArray">
+                  <span class="text-description joblevel-icon mb-10">
+                    Experience</span>
+                  <strong *ngIf="item.experience=='Begginer'" class="small-heading">No experience/Begginerr</strong>
+                  <strong *ngIf="item.experience=='Junior'" class="small-heading">0-2 Years/Junior</strong>
+                  <strong *ngIf="item.experience=='Confirmed'" class="small-heading">2-4 Years/Confirmed</strong>
+                  <strong *ngIf="item.experience=='Senior'" class="small-heading">+5 Years/Senior</strong>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="row mt-25">
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/job-type.svg"></div>
+                <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Job
+                    type</span><strong class="small-heading"
+                    *ngFor=" let item of dataArray">{{item.type_contrat}}</strong></div>
+              </div>
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/deadline.svg"></div>
+                <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Deadline</span><strong
+                    class="small-heading" *ngFor=" let item of dataArray">{{item.start_date}}</strong></div>
+              </div>
+            </div>
+            <div class="row mt-25">
+
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/salary.svg"></div>
+                <div class="sidebar-text-info ml-10"><span
+                    class="text-description salary-icon mb-10">Salary</span><strong class="small-heading"
+                    *ngFor=" let item of dataArray">
+                    {{item.salaire}} TND</strong></div>
+              </div>
+
+              <div class="col-md-6 d-flex mt-sm-15">
+                <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/location.svg"></div>
+                <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Location</span><strong
+                    class="small-heading" *ngFor=" let item of dataArray">{{item.location}}</strong></div>
+              </div>
+            </div>
+          </div>
+          <div class="content-single">
+            <h4 *ngFor=" let item of dataArray">Welcome to {{item.user.firstname}} {{item.user.lastname}}Team</h4>
+            <p *ngFor=" let item of dataArray">{{item.user.society_description}}</p>
+            <h4>Essential Knowledge, Skills, and Experience</h4>
+            <ul>
+              <li *ngFor=" let item of dataArray">{{item.description}}</li>
+
+            </ul>
+          </div>
+          <div class="author-single"><span *ngFor=" let item of dataArray">{{item.user.firstname}}
+              {{item.user.lastname}}Team</span></div>
+          <div class="single-apply-jobs">
+            <div class="row align-items-center">
+              <div class="col-md-5"><a class="btn btn-default mr-15" href="#">Apply now</a><a class="btn btn-border"
+                  href="#">Save job</a></div>
+              <div class="col-md-7 text-lg-end social-share">
+                <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a
+                  class="mr-5 d-inline-block d-middle" href="#"><img
+                    src="assets/imgs/template/icons/share-fb.svg"></a><a class="mr-5 d-inline-block d-middle"
+                  href="#"><img src="assets/imgs/template/icons/share-tw.svg"></a><a
+                  class="mr-5 d-inline-block d-middle" href="#"><img
+                    src="assets/imgs/template/icons/share-red.svg"></a><a class="d-inline-block d-middle" href="#"><img
+                    src="assets/imgs/template/icons/share-whatsapp.svg"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+          <div class="sidebar-border">
+            <div class="sidebar-heading">
+              <div class="avatar-sidebar">
+                <figure *ngFor=" let item of dataArray"><img [src]="item.user.user_image_url"></figure>
+                <div class="sidebar-info"><span class="sidebar-company"
+                    *ngFor=" let item of dataArray">{{item.user.firstname}} {{item.user.lastname}}</span><span
+                    class="card-location" *ngFor=" let item of dataArray">
+                    {{item.location}}</span></div>
+              </div>
+            </div>
+            <div class="sidebar-list-job">
+              <div class="box-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.3150609575905!2d-87.6235655!3d41.886080899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2ca8b34afe61%3A0x6caeb5f721ca846!2s205%20N%20Michigan%20Ave%20Suit%20810%2C%20Chicago%2C%20IL%2060601%2C%20Hoa%20K%E1%BB%B3!5e0!3m2!1svi!2s!4v1658551322537!5m2!1svi!2s"
+                  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<footer class="footer mt-50">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col-1 col-md-3 col-sm-12"><a href="index.html"><img
+            src="assets/imgs/template/jobhub-logo.svg"></a>
+        <div class="mt-20 mb-20 font-xs color-text-paragraph-2">TuniOffers is the heart of the design community and the best
+          resource to discover and connect with designers and jobs worldwide.</div>
+        <div class="footer-social"><a class="icon-socials icon-facebook" href="#"></a><a
+            class="icon-socials icon-twitter" href="#"></a><a class="icon-socials icon-linkedin" href="#"></a></div>
+      </div>
+      <div class="footer-col-2 col-md-2 col-xs-6">
+        <h6 class="mb-20">Resources</h6>
+        <ul class="menu-footer">
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Our Team</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-3 col-md-2 col-xs-6">
+        <h6 class="mb-20">Community</h6>
+        <ul class="menu-footer">
+          <li><a href="#">Feature</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Credit</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-4 col-md-2 col-xs-6">
+        <h6 class="mb-20">Quick links</h6>
+        <ul class="menu-footer">
+          <li><a href="#">iOS</a></li>
+          <li><a href="#">Android</a></li>
+          <li><a href="#">Microsoft</a></li>
+          <li><a href="#">Desktop</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-5 col-md-2 col-xs-6">
+        <h6 class="mb-20">More</h6>
+        <ul class="menu-footer">
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-6 col-md-3 col-sm-12">
+        <h6 class="mb-20">Download App</h6>
+        <p class="color-text-paragraph-2 font-xs">Download our Apps and get extra 15% Discount on your first
+          Order&mldr;!</p>
+        <div class="mt-15"><a class="mr-5" href="#"><img src="assets/imgs/template/icons/app-store.png"
+              alt="joxBox"></a><a href="#"><img src="assets/imgs/template/icons/android.png" alt="joxBox"></a></div>
+      </div>
+    </div>
+    <div class="footer-bottom mt-50">
+      <div class="row">
+        <div class="col-md-6"><span class="font-xs color-text-paragraph">Copyright &copy; 2022. TuniOffers all right
+            reserved</span></div>
+        <div class="col-md-6 text-md-end text-start">
+          <div class="footer-social"><a class="font-xs color-text-paragraph" href="#">Privacy Policy</a><a
+              class="font-xs color-text-paragraph mr-30 ml-30" href="#">Terms &amp; Conditions</a><a
+              class="font-xs color-text-paragraph" href="#">Security</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

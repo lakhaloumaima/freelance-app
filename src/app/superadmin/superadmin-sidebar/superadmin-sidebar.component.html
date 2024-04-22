@@ -1,0 +1,120 @@
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+  <div class="app-brand demo">
+    <a routerLink="/superadmin" class="app-brand-link">
+
+      <div class="header-logo"><a class="d-flex"><img  width="200"
+            src="./assets/imgs/template/logo-plateforme1.2.png"></a></div>
+      <span class="app-brand-text demo menu-text fw-bolder ms-2">Superadmin</span>
+    </a>
+
+    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+      <i class="bx bx-chevron-left bx-sm align-middle"></i>
+    </a>
+  </div>
+
+  <div class="menu-inner-shadow"></div>
+
+  <ul class="menu-inner py-1">
+    <!-- Dashboard -->
+    <li class="menu-item active">
+      <a routerLink="/superadmin" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Dashboard</div>
+      </a>
+    </li>
+
+    <!-- Layouts -->
+    <li class="menu-item">
+      <a href="javascript:void(0);" data-toggle="collapse" href="#multiCollapseExample1" aria-expanded="false"
+        aria-controls="multiCollapseExample1" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bxs-category"></i>
+        <div data-i18n="Layouts">Offers Categories</div>
+      </a>
+
+      <ul id="multiCollapseExample1" class="collapse multi-collapse">
+        <li class="menu-item">
+          <a routerLink="/all-domains" class="menu-link">
+            <i class="menu-icon tf-icons bx  bx-right-arrow-alt"></i>
+            <div data-i18n="Without menu">All Domains</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a routerLink="/all-categories" class="menu-link">
+            <i class="menu-icon tf-icons bx  bx-right-arrow-alt"></i>
+            <div data-i18n="Without navbar">All categories</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a routerLink="/all-subcategories" class="menu-link">
+            <i class="menu-icon tf-icons bx  bx-right-arrow-alt"></i>
+            <div data-i18n="Container">All sub-categories</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="menu-item ">
+      <a routerLink="/all-languages" class="menu-link">
+        <i class="menu-icon tf-icons bx bxs-calendar-plus"></i>
+        <div data-i18n="Analytics">all languages</div>
+      </a>
+    </li>
+
+    <li class="menu-item ">
+      <a routerLink="/all-users" class="menu-link">
+        <i class="menu-icon tf-icons bx bxs-user-detail"></i>
+        <div data-i18n="Analytics">all Users</div>
+      </a>
+    </li>
+    <li class="menu-item ">
+      <a routerLink="/all-offres" class="menu-link">
+        <i class="menu-icon tf-icons bx bxs-briefcase"></i>
+        <div data-i18n="Analytics">all offers</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="javascript:void(0);" data-toggle="collapse" href="#multiCollapseExample2" aria-expanded="false"
+        aria-controls="multiCollapseExample2" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons bx bx-user"></i>
+        <div data-i18n="Layouts">Account Settings</div>
+      </a>
+
+      <ul id="multiCollapseExample2" class="collapse multi-collapse">
+        <li class="menu-item">
+          <a routerLink="/edit-superadmin" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-user-account"></i>
+            <div data-i18n="Without menu">Account</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a routerLink="/not-found" class="menu-link">
+            <i class="menu-icon tf-icons bx bxs-user-account"></i>
+            <div data-i18n="Without navbar">Notifications</div>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Support</span>
+    </li>
+    <li class="menu-item">
+      <a routerLink="/not-found" class="menu-link">
+        <i class="menu-icon tf-icons bx bxs-report"></i>
+        <div data-i18n="Support">Reports</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a routerLink="/not-found" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-support"></i>
+        <div data-i18n="Support">Support</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a routerLink="/not-found" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-file"></i>
+        <div data-i18n="Documentation">Documentation</div>
+      </a>
+    </li>
+  </ul>
+</aside>

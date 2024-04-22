@@ -1,0 +1,37 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <div class="layout-page">
+            <app-intern-header></app-intern-header>
+            <br><br>
+      <div class="container mb-4">
+        <div class="row">
+          <!-- Wishlist-->
+          <div class="col-lg-6 pb-5" *ngFor="let data of dataArray">
+            <!-- Item-->
+            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i
+                  (click)="deleteFavoris(data.id )"style="text-align:center" class='bx bx-x-circle'></i></span>
+              <div class="px-3 my-3">
+                <a class="cart-item-product">
+                  <div class="cart-item-product-thumb"><img
+                      src="https://previews.123rf.com/images/lkeskinen/lkeskinen1701/lkeskinen170112365/69733888-my-favorite-rubber-stamp-grunge-design-with-dust-scratches-effects-can-be-easily-removed-for-a.jpg"
+                      alt="Product"></div>
+                  <div class="cart-item-product-info">
+                    <h4 style="cursor: pointer;" class="cart-item-product-title"><i class="fas fa-heart"></i>
+                      {{data.offre.titre_offre}}</h4>
+                    <div class="text-lg text-body font-weight-medium pb-1"> {{data.offre.description}}
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+
+          </div>
+
+            <div class="alert alert-danger"  style="text-align: center;" >
+              No Data Found</div>
+        </div>
+    </div>
+</div>
+
+

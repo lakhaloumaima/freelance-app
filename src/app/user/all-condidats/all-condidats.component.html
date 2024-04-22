@@ -1,0 +1,77 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <div class="layout-page">
+      <app-header></app-header>
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+
+          <body>
+            <main class="main">
+    <section class="section-box mt-30">
+        <div class="container">
+          <div class="content-page">
+            <div class="box-filters-job">
+              <div class="row">
+                <div class="col-xl-6 col-lg-5"><span class="text-small text-showing">Showing <strong>by {{5}} </strong>of <strong>{{dataArray.length}} </strong>Condidats</span></div>
+                <div class="col-xl-6 col-lg-7 text-lg-end mt-sm-15">
+                  <div class="display-flex2">
+
+
+                    <div class="box-view-type"><a class="view-type"><img src="assets/imgs/template/icons/icon-grid-hover.svg" ></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-3 col-lg-4 col-md-6" *ngFor="let item of dataArray  | paginate: { itemsPerPage: 5, currentPage: p } ">
+                <div class="card-grid-2 hover-up">
+                  <div class="card-grid-2-image-left">
+                    <div class="card-grid-2-image-rd online"><a href="candidate-details.html">
+                        <figure><img  src="{{item.user_image_url}}"></figure></a></div>
+                    <div class="card-profile pt-10"><a>
+
+                        <h5>
+                          <div *ngIf="item.role =='employee'">
+                            <a [routerLink]="['/employee-profil-to-others',item.id]"> {{item.firstname}} {{item.lastname}}</a>
+                          </div>
+                          <div *ngIf="item.role =='stagiaire'">
+                            <a [routerLink]="['/intern-profile-to-others',item.id]"> {{item.firstname}} {{item.lastname}}</a>
+                          </div>
+                          <div *ngIf="item.role =='freelancer'">
+                            <a [routerLink]="['/freelancer-profil-to-others',item.id]">{{item.firstname}} {{item.lastname}}</a>
+                          </div>
+
+
+                        </h5></a><span class="font-xs color-text-mutted">{{item.description}}</span>
+                      <div class="rate-reviews-small pt-5"><span><img src="assets/imgs/template/icons/star.svg" ></span><span><img src="assets/imgs/template/icons/star.svg" ></span><span><img src="assets/imgs/template/icons/star.svg" ></span><span><img src="assets/imgs/template/icons/star.svg" ></span><span><img src="assets/imgs/template/icons/star.svg" ></span><span class="ml-10 color-text-mutted font-xs">(65)</span></div>
+                    </div>
+                  </div>
+                  <div class="card-block-info">
+                    <p class="font-xs color-text-paragraph-2">| {{item.society_description}}</p>
+                    <div class="card-2-bottom card-2-bottom-candidate mt-30"  *ngFor="let offreCategory of item.offre_categories">
+                      <div class="text-start"><a class="btn btn-tags-sm mb-10 mr-5" href="jobs-grid.html"> {{ offreCategory.souscategorie.sous_categorie_name }}</a>
+                      </div>
+                    </div>
+                    <div class="employers-info align-items-center justify-content-center mt-15">
+                      <div class="row">
+                        <div class="col-6"><span class="d-flex align-items-center"><i class="fi-rr-marker mr-5 ml-0"></i><span class="font-sm color-text-mutted">{{item.adress}}</span></span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</div>
+</div>
+</div>
+</div>
+</div>

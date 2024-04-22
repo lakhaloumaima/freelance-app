@@ -1,0 +1,82 @@
+<header class="header sticky-bar">
+  <div class="container">
+    <div class="main-header">
+      <div class="header-left">
+        <div class="header-logo"><a class="d-flex" href="index.html"><img alt="TuniOffers"
+              src="./assets/imgs/template/logo-plateforme1.2.png"></a></div>
+      </div>
+      <div class="header-nav">
+        <nav class="nav-main-menu">
+
+          <ul class="main-menu">
+            <li><a class="active" routerLink="/freelancer">Dashboard</a></li>
+            <li><a routerLink="/freelancer-condidatures" class="menu-link">My Candidatures</a></li>
+            <li><a class="menu-link">My Offres</a>
+              <ul class="sub-menu">
+                <li><a routerLink="/freelancer-offre-inprogress" class="menu-link">In Progress ..</a></li>
+                <li><a routerLink="/freelancer-offre-ended" class="menu-link">Ended Offres</a></li>
+              </ul>
+            </li>
+            <li><a routerLink="/freelancer-favorite-list" class="menu-link">My favorite list</a></li>
+            <li><a [routerLink]="['/freelancer-profil-to-others',userdata.id]"   class="menu-link">Profil to Others</a></li>
+            <li class="has-children"><a>enrich profile</a>
+              <ul class="sub-menu">
+                <li><a routerLink="/freelancer-certifications" class="menu-link">My certifications</a></li>
+                <li><a routerLink="/freelancer-training" class="menu-link" class="menu-link">My Training</a></li>
+                <li><a routerLink="/freelancer-experiences" class="menu-link">My Experiences</a></li>
+                <li><a routerLink="/freelancer-linguistic-knowledge" class="menu-link">My linguistic knowledge</a></li>
+                <li><a routerLink="/freelancer-skills" class="menu-link">My SKills</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span
+            class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+      </div>
+      <div class="header-right">
+        <div class="block-signin">
+          <div class="header-logo" class="nav-item navbar-dropdown dropdown-user dropdown">
+            <a class="d-flex" href="javascript:void(0);" data-bs-toggle="dropdown"><img alt="TuniOffers"
+              [src]="userdata.user_image_url" class="w-px-40 h-auto rounded-circle"></a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item">
+                  <div class="d-flex">
+                    <div class="flex-shrink-0 me-3">
+                      <div class="avatar avatar-online">
+                        <img [src]="userdata.user_image_url" class="w-px-40 h-auto rounded-circle" />
+                      </div>
+                    </div>
+                    <div class="flex-grow-1">
+                      <span class="fw-semibold d-block">{{userdata.lastname}} {{userdata.firstname}}</span>
+                      <small class="text-muted">{{userdata.role}}</small>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/edit-freelance">
+                  <i class="bx bx-user me-2"></i>
+                  <span class="align-middle">My Profile</span>
+                </a>
+              </li>
+
+              <li>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="logout()">
+                  <i class="bx bx-power-off me-2"></i>
+                  <span class="align-middle">Log Out</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

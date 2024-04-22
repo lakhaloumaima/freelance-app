@@ -1,0 +1,72 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <app-admin-sidebar></app-admin-sidebar>
+        <div class="layout-page">
+            <app-admin-header></app-admin-header>
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <!-- Main Content -->
+                    <div class="card">
+                        <h5 class="card-header">All Ended Internship offers</h5>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Internship Title</th>
+                                        <th>Internship Description</th>
+                                        <th>Level Of Study</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Is Payed</th>
+                                        <th>Location</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                    <tr *ngFor="let item of dataArray">
+                                        <td>
+                                            <span *ngIf="item.etat == 'Accepted'"
+                                                class="badge bg-label-success me-1">{{item.etat}}</span>
+                                        </td>
+                                        <td>{{item.offre.titre_offre}}</td>
+                                        <td>{{item.offre.description}}</td>
+                                        <td>{{item.offre.niveau_etude}}</td>
+                                        <td>{{item.offre.start_date}}</td>
+                                        <td>{{item.offre.end_date}}</td>
+                                        <td>
+                                            <span *ngIf="item.is_completed == true"
+                                                class="badge bg-label-success me-1">{{item.offre.is_payed}}</span>
+                                            <span *ngIf="item.is_completed == false"
+                                                class="badge bg-label-danger me-1">{{item.offre.is_payed}}</span>
+                                        </td>
+                                        <td>
+                                        <td>{{item.offre.location}}</td>
+
+                                        <td>
+
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+
+                                                <a class="dropdown-item" href="javascript:void(0);"
+                                                    (click)="deleteEndedInternshipOffer(item.id)"><i
+                                                        class="bx bx-trash me-1"></i>
+                                                    Delete</a>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

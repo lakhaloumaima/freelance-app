@@ -1,0 +1,146 @@
+<div *ngIf="currentuser && currentuser.role =='employee'">
+  <app-employee-header></app-employee-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='stagiaire'">
+  <app-employee-header></app-employee-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='freelancer'">
+  <app-freelancer-header></app-freelancer-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='admin'">
+  <app-admin-header></app-admin-header>
+</div>
+<div *ngIf="currentuser && currentuser.role =='superadmin'">
+  <app-superadmin-header></app-superadmin-header>
+</div>
+<div *ngIf="!currentuser">
+  <app-header></app-header>
+</div>
+<main class="main">
+    <section class="section-box-2" *ngFor=" let item of dataArray">
+      <div class="container">
+        <div class="banner-hero banner-image-single"><img src="assets/imgs/page/job-single/thumb.png" alt="TuniOffers"></div>
+        <div class="row mt-10">
+          <div class="col-lg-8 col-md-12">
+            <h3 class="class">{{item.titre_offre}}</h3>
+            <div class="mt-0 mb-15"><span class="card-briefcase class">{{item.type_contrat}}</span><span class="card-time class">3
+                mins ago</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 text-lg-end">
+            <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal"
+            *ngFor=" let item of dataArray"
+            (click)="addrequest(item.id)"
+              data-bs-target="#ModalApplyJobForm">Apply now</div>
+          </div>
+        </div>
+        <div class="border-bottom pt-10 pb-10"></div>
+      </div>
+    </section>
+    <section class="section-box mt-50">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+            <div class="job-overview">
+              <h5 class="border-bottom pb-15 mb-30">Employment Information</h5>
+              <div class="row">
+              </div>
+              <div class="row mt-25">
+                <div class="col-md-6 d-flex">
+                  <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/industry.svg" alt="TuniOffers"></div>
+                  <div class="sidebar-text-info ml-10"><span *ngFor=" let item of dataArray"
+                      class="text-description industry-icon mb-10" > Industry </span><strong
+                      *ngFor=" let item of dataArray" class="small-heading class">
+                      {{ item?.offre_categories[0]?.souscategorie?.categorie?.domain?.domain_name }} /  {{ item?.offre_categories[0]?.souscategorie?.categorie?.categorie_name }}</strong></div>
+                </div>
+                <div class="col-md-6 d-flex">
+                  <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/experience.svg" alt="TuniOffers"></div>
+                  <div class="sidebar-text-info ml-10" *ngFor=" let item of dataArray">
+                    <span class="text-description joblevel-icon mb-10">
+                      Experience</span>
+                    <strong *ngIf="item.experience=='Begginer'" class="small-heading class">No experience/Begginerr</strong>
+                    <strong *ngIf="item.experience=='Junior'" class="small-heading class">0-2 Years/Junior</strong>
+                    <strong *ngIf="item.experience=='Confirmed'" class="small-heading class">2-4 Years/Confirmed</strong>
+                    <strong *ngIf="item.experience=='Senior'" class="small-heading class">+5 Years/Senior</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-25">
+                <div class="col-md-6 d-flex mt-sm-15">
+                  <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/job-type.svg" alt="TuniOffers"></div>
+                  <div class="sidebar-text-info ml-10"><span class="text-description jobtype-icon mb-10">Job
+                      type</span><strong class="small-heading class"
+                      *ngFor=" let item of dataArray">{{item.type_contrat}}</strong></div>
+                </div>
+                <div class="col-md-6 d-flex mt-sm-15">
+                  <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/deadline.svg" alt="TuniOffers"></div>
+                  <div class="sidebar-text-info ml-10"><span class="text-description mb-10">Deadline</span><strong
+                      class="small-heading class" *ngFor=" let item of dataArray">{{item.start_date}}</strong></div>
+                </div>
+              </div>
+              <div class="row mt-25">
+                <div class="col-md-6 d-flex mt-sm-15">
+                  <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/salary.svg" alt="TuniOffers"></div>
+                  <div class="sidebar-text-info ml-10"><span
+                      class="text-description salary-icon mb-10">Salary</span><strong class="small-heading class"
+                      *ngFor=" let item of dataArray">
+                      {{item.salaire}} TND</strong></div>
+                </div>
+                <div class="col-md-6 d-flex mt-sm-15">
+                  <div class="sidebar-icon-item"><img src="assets/imgs/page/job-single/location.svg" alt="TuniOffers"></div>
+                  <div class="sidebar-text-info ml-10"><span class="text-description mb-10 ">Location</span><strong
+                      class="small-heading class" *ngFor=" let item of dataArray">{{item.location}}</strong></div>
+                </div>
+              </div>
+            </div>
+            <div class="content-single">
+              <h4 *ngFor=" let item of dataArray">Welcome to {{item.user.firstname}} {{item.user.lastname}}Team</h4>
+              <p *ngFor=" let item of dataArray">{{item.user.society_description}}</p>
+              <h4>Essential Knowledge, Skills, and Experience</h4>
+              <ul>
+                <li *ngFor=" let item of dataArray">{{item.description}}</li>
+              </ul>
+            </div>
+            <div class="author-single"><span *ngFor=" let item of dataArray">{{item.user.firstname}}
+                {{item.user.lastname}}Team</span></div>
+            <div class="single-apply-jobs">
+              <div class="row align-items-center">
+                <div class="col-md-5"><a class="btn btn-default mr-15"  *ngFor=" let item of dataArray" (click)="addrequest(item.id)">Apply now</a><a class="btn btn-border"
+                  *ngFor=" let item of dataArray" (click)="addfavoris(item.id)">Save job</a></div>
+                <div class="col-md-7 text-lg-end social-share">
+                  <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a
+                    class="mr-5 d-inline-block d-middle" href="#"><img alt="TuniOffers"
+                      src="assets/imgs/template/icons/share-fb.svg"></a><a class="mr-5 d-inline-block d-middle"
+                    href="#"><img alt="TuniOffers" src="assets/imgs/template/icons/share-tw.svg"></a><a
+                    class="mr-5 d-inline-block d-middle" href="#"><img alt="TuniOffers"
+                      src="assets/imgs/template/icons/share-red.svg"></a><a class="d-inline-block d-middle" href="#"><img
+                      alt="TuniOffers" src="assets/imgs/template/icons/share-whatsapp.svg"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+            <div class="sidebar-border">
+              <div class="sidebar-heading">
+                <div class="avatar-sidebar">
+                  <figure *ngFor=" let item of dataArray"><img alt="TuniOffers" [src]="item.user.user_image_url"></figure>
+                  <div class="sidebar-info"><span class="sidebar-company class"
+                      *ngFor=" let item of dataArray">{{item.user.firstname}} {{item.user.lastname}}</span><span
+                      class="card-location class" *ngFor=" let item of dataArray">
+                      {{item.location}}</span></div>
+                </div>
+              </div>
+              <div class="sidebar-list-job">
+                <div class="box-map">
+                  <iframe
+                  width="300"
+                  height="225"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d51757.48801548368!2d10.576854864404208!3d35.82832752001887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x130275759ac9d10d%3A0x698e3915682cef7d!2sSousse!5e0!3m2!1sfr!2stn!4v1684587818085!5m2!1sfr!2stn"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>

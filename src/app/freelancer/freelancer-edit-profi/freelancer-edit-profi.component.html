@@ -1,0 +1,152 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+      <div class="layout-page">
+        <app-freelancer-header></app-freelancer-header>
+
+          <div class="content-wrapper">
+              <!-- Content -->
+              <div class="container-xxl flex-grow-1 container-p-y">
+
+                  <div class="container-fluid">
+                      <div class="container bootstrap snippets bootdey">
+                          <div class="panel-body inf-content">
+                              <!-- Content Row -->
+                              <div class="container">
+                                  <div class="row gutters">
+                                      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                                          <div class="card h-100">
+                                              <div class="card-body">
+                                                  <div class="account-settings">
+                                                      <form [formGroup]="imageupdate" #f="ngForm"
+                                                          (ngSubmit)="updateimage(f)">
+                                                          <div class="user-profile">
+                                                              <div class="user-avatar">
+                                                                  <img height="180" [src]="userdata.user_image_url"
+                                                                      alt="" class="card-img-top" />
+                                                              </div>
+                                                              <br>
+                                                              <h5 class="user-name">Company name :{{
+                                                                  userdata.firstname }} </h5>
+                                                              <h6 class="user-email">{{ userdata.email }}</h6>
+                                                              <br />
+                                                              <input type="file" (change)="fileChange($event)"
+                                                                  [defaultValue]="" class="form-control"
+                                                                  formControlName="avatar" rows="3" width="110"
+                                                                  required />
+                                                          </div>
+                                                          <br>
+                                                          <button type="submit" class="btn btn-primary px-4"
+                                                              style="background-color: rgb(38, 8, 158);">Update
+                                                              Image</button>
+                                                      </form>
+
+                                                      <div *ngIf="userdata.descirption!=null" class="about">
+                                                          <h5>About</h5>
+                                                          <p>{{ userdata.description }} </p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                                          <div class="card h-100">
+                                              <div class="card-body">
+                                                  <form [formGroup]="upadate" #f="ngForm"
+                                                      (ngSubmit)="updatenewuser(f)">
+                                                      <div class="row gutters">
+                                                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                              <h6 class="mb-2 text-primary">Personal Details</h6>
+
+                                                          </div>
+                                                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                              <div class="form-group">
+                                                                  <label for="fullName">First Name</label>
+                                                                  <input type="text" class="form-control"
+                                                                      formControlName="firstname"
+                                                                      placeholder="firstname"
+                                                                      [(ngModel)]="userdata.firstname" required
+                                                                      ngModel>
+                                                              </div>
+                                                              <div class="form-group">
+                                                                <label for="fullName">adress</label>
+                                                                <input type="text" class="form-control"
+                                                                    formControlName="adress"
+                                                                    placeholder="adress"
+                                                                    [(ngModel)]="userdata.adress" required
+                                                                    ngModel>
+                                                            </div>
+                                                          </div>
+                                                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                              <div class="form-group">
+                                                                  <div class="form-group">
+                                                                      <label for="fullName">Last Name</label>
+                                                                      <input type="text" class="form-control"
+                                                                          formControlName="lastname"
+                                                                          placeholder="firstname"
+                                                                          [(ngModel)]="userdata.lastname" required
+                                                                          ngModel>
+                                                                  </div>
+
+                                                                  <label for="eMail">Email</label>
+                                                                  <input readonly style="cursor: not-allowed;"
+                                                                      type="email" class="form-control"
+                                                                      formControlName="email" id="eMail"
+                                                                      [(ngModel)]="userdata.email"
+                                                                      placeholder="Enter email ID">
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <label for="sTate">My Bio</label>
+                                                                <textarea class="form-control" [defaultValue]="" formControlName="society_description"
+                                                                     [(ngModel)]="userdata.society_description" ngModel
+                                                                    style="height: 150px;"></textarea>
+                                                            </div>
+                                                      </div>
+                                                      <div class="row gutters">
+                                                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                              <div class="form-group">
+                                                                  <label for="zIp">Password</label>
+                                                                  <input type="password" class="form-control"
+                                                                      [defaultValue]="" formControlName="password"
+                                                                      placeholder="password"
+                                                                      [(ngModel)]="userdata.password" required
+                                                                      ngModel>
+                                                              </div>
+                                                          </div>
+                                                          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                                              <div class="form-group">
+                                                                  <label for="sTate">password_confirmation</label>
+                                                                  <input type="password" class="form-control"
+                                                                      [defaultValue]=""
+                                                                      formControlName="password_confirmation"
+                                                                      placeholder="password_confirmation"
+                                                                      [(ngModel)]="userdata.password_confirmation"
+                                                                      required ngModel>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+
+                                                    </div>
+                                                      <div class="row gutters">
+                                                          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                              <div class="text-right">
+                                                                  <br> &nbsp;
+                                                                  &nbsp;
+                                                                  <button type="submit" class="btn btn-primary px-4"
+                                                                      style="background-color: rgb(38, 8,158);">Save
+                                                                      Changes </button>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+
+                                                  </form>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>

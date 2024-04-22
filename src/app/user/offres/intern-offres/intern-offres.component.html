@@ -1,0 +1,159 @@
+
+
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <div class="layout-page">
+        <app-header></app-header>
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <body>
+              <main class="main">
+                <section class="section-box-2">
+                  <div class="container">
+                    <div class="banner-hero banner-single banner-single-bg">
+                      <div class="block-banner text-center">
+                        <h3 class="wow animate__animated animate__fadeInUp"><span class="color-brand-2">{{counter1}} Internship Offers</span>
+                        Now Available</h3>
+                      <div class="font-sm color-text-paragraph-2 mt-10 wow animate__animated animate__fadeInUp"
+                        data-wow-delay=".1s">Discover {{counter1}} exciting internship Offers waiting for you. Join now and
+                        unleash your potential in writing, design, marketing, and more.</div>
+                      <div class="form-find text-start mt-40 wow animate__animated animate__fadeInUp"
+                        data-wow-delay=".2s">
+                        <input [(ngModel)]="searchedKeyword" class="form-input input-keysearch mr-10" type="text"
+                          placeholder="Your keyword... ">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section class="section-box mt-30">
+                <div class="container">
+                  <div class="row flex-row-reverse">
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-12 float-right">
+                      <div class="content-page">
+                        <div class="box-filters-job">
+                          <div class="row">
+                            <div class="col-xl-6 col-lg-5"><span class="text-small text-showing">Showing <strong>by 5
+                                </strong>of <strong>{{counter1}} </strong>Offre</span></div>
+                          </div>
+                        </div>
+                        <div class="row display-list">
+                          <div class="col-xl-12 col-12" *ngFor="let item of dataArray3 | paginate: { itemsPerPage: 5, currentPage: p } | filter: searchedKeyword ">
+                            <div class="card-grid-2 hover-up"><span *ngIf="item.verified" class="flash"></span>
+                              <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                  <div class="card-grid-2-image-left">
+                                    <div class="image-box"><img src="{{item.user.user_image_url}}" width="50"
+                                        ></div>
+                                    <div class="right-info"><a class="name-job"
+                                        [routerLink]="['/offre-internship-details',item.id]"> {{item.user.firstname}}
+                                        {{item.user.lastname}}</a><span
+                                        class="location-small">{{item.user.adress}}</span></div>
+                                  </div>
+                                </div>
+                                <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
+                                  <div class="pl-15 mb-15 mt-30">
+                                    <a class="btn btn-grey-small mr-5" href="#"
+                                      *ngFor="let offreCategory of item.offre_categories">
+                                      {{ offreCategory.souscategorie.sous_categorie_name }}
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-block-info">
+                                <h4><a href="internship-details.html">{{item.titre_offre}}</a></h4>
+                                <p class="font-sm color-text-paragraph mt-10">{{item.description}}</p>
+                                <div class="card-2-bottom mt-20">
+                                  <div class="row">
+                                    <div class="col-lg-7 col-7">
+                                      <ng-container *ngIf="item.is_payed">
+                                        <span class="card-text-price">{{item.salaire}} TND</span>
+                                      </ng-container>
+                                      <ng-container *ngIf="!item.is_payed">
+                                        <span class="text-muted">Salary: Not disclosed</span>
+                                      </ng-container>
+                                    </div>
+                                    <div class="col-lg-5 col-5 text-end">
+                                      <div class="btn btn-apply-now" data-bs-toggle="modal"
+                                        data-bs-target="#ModalApplyINternshipForm" routerLink="/login">Apply now</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="messageErr">
+                            {{messageErr}}</div>
+                        </div>
+                      </div>
+                      <div style="text-align:right;">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-12">
+                      <div class="sidebar-shadow none-shadow mb-30">
+                        <div class="sidebar-filters">
+                          <div class="filter-block head-border mb-30">
+                            <h5>Advance Filter</h5>
+                          </div>
+                          <div class="filter-block mb-30">
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">search by Offer Domain</label>
+                              <select (change)="getoffrebydomain($event)" class="form-control"
+                                id="exampleFormControlSelect1" formControlName="domain_id" name="id">
+                                <option *ngFor=" let item of dataArray" [value]="item.id"> {{item.domain_name}}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label" for="basic-icon-default-fullname">search by Offre Budget</label>
+                              <div class="form-group mb-20">
+                                <ul class="list-checkbox">
+                                  <li>
+                                    <label class="cb-container">
+                                      <input type="checkbox" (click)="getoffrebybudget(0,20000000)" [(ngModel)]="allChecked"
+                                        (change)="handleCheckboxChange('all')" checked="checked"><span
+                                        class="text-small">All</span><span class="checkmark"></span>
+                                    </label><span class="number-item">{{counter1}}</span>
+                                  </li>
+                                  <li>
+                                    <label class="cb-container">
+                                      <input type="checkbox" [(ngModel)]="rangeChecked1" (click)="getoffrebybudget(0,100)"
+                                        (change)="handleCheckboxChange('range1')"><span class="text-small">0 TND - 100
+                                        TND</span><span class="checkmark"></span>
+                                    </label>
+                                  </li>
+                                  <li>
+                                    <label class="cb-container">
+                                      <input type="checkbox" [(ngModel)]="rangeChecked2" (click)="getoffrebybudget(100,1000)"
+                                        (change)="handleCheckboxChange('range2')"><span class="text-small">100 TND - 1000
+                                        TND</span><span class="checkmark"></span>
+                                    </label>
+                                  </li>
+                                  <li>
+                                    <label class="cb-container">
+                                      <input type="checkbox" [(ngModel)]="rangeChecked3" (click)="getoffrebybudget(1000,5000)"
+                                        (change)="handleCheckboxChange('range3')"><span class="text-small" selected>1000
+                                        TND - 5000 TND</span><span class="checkmark"></span>
+                                    </label>
+                                  </li>
+      
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </main>
+          </body>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

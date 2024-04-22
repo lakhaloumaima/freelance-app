@@ -1,0 +1,132 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <div class="layout-page">
+        <app-intern-header></app-intern-header>
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="card">
+              <div class="d-flex justify-content-between align-items-center">
+                <h4 class="fw-bold   mb-4"> My Skills ({{counter}})</h4>
+                <div>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#basicModal" class="btn btn-primary">Add
+                    Skill</button>
+                </div>
+              </div>
+              <div class="table-responsive  text-nowrap">
+                <table class="table table-hover">
+                  <thead>
+                    <tr class="text-nowrap">
+                      <th>Skill Name</th>
+                      <th>Niveau</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of dataArray| paginate: { itemsPerPage: 5, currentPage: p } ">
+                      <td>{{item.souscategorie.sous_categorie_name}}</td>
+                      <td>{{item.niveau}} %</td>
+                      <td class="action-cell">
+                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                          <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" (click)="getdata(item.niveau,item.souscategorie.sous_categorie_name, item.id)" data-toggle="modal"
+                            data-target="#basicModal1" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
+                            Edit</a>
+                          <a class="dropdown-item" (click)="deleteSkill(item.id)" href="javascript:void(0);"><i
+                              class="bx bx-trash me-1"></i>
+                            Delete</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr *ngIf="dataArray.length === 0">
+                      <td colspan="5">
+                        <div class="empty-table-message">No Data Found</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div style="text-align:right;">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+                <div class="mt-3">
+                  <!-- Modal -->
+                  <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <form class="modal-content" [formGroup]="addSkill" #f="ngForm"
+                        (ngSubmit)="addnewSkill (f); f.reset()">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="backDropModalTitle">Add New Skill</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col mb-3">
+                              <label for="nameBackdrop" class="form-label">Skill Name</label>
+                              <select class="form-control" id="exampleFormControlSelect1" formControlName="souscategorie_id"
+                              name="id">
+                              <option  hidden value="" selected> select your Skill </option>
+                              <option *ngFor=" let item of dataArray2" [value]="item.id"> {{item.sous_categorie_name}}
+                              </option>
+                            </select><br>
+                              <label for="nameBackdrop" class="form-label">Level</label>
+                              <input type="text" class="form-control"
+                              formControlName="niveau"
+                              placeholder="niveau"
+                               required
+                              ngModel>
+                              <br>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Close
+                          </button>
+                          <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="basicModal1" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel1">Update Skill Level</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="update" #f="ngForm" (ngSubmit)="updateSkills(f); f.reset()">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Competence </label>
+                      <input type="text" class="form-control"
+                      readonly style="cursor: not-allowed;"
+                      [value]="dataSkill.sous_categorie_name"required
+                      ngModel>
+                      <label for="exampleFormControlInput1">Level </label>
+                      <input type="text" class="form-control"
+                      formControlName="niveau"
+                      placeholder="niveau"
+                      [(ngModel)]="dataSkill.niveau" required
+                      ngModel>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

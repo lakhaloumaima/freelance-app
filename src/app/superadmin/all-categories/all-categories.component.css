@@ -1,0 +1,86 @@
+.alert {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 9999;
+    text-align: center;
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 10px;
+    /* increased border radius */
+    animation-name: drop-down;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.alert.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+@keyframes drop-down {
+    0% {
+        top: -100px;
+    }
+
+    100% {
+        top: 60px;
+    }
+}
+
+
+.empty-table-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 24px;
+    color: #999;
+  }
+
+
+  .table-responsive.text-nowrap .table {
+    margin-bottom: 0;
+}
+
+.table-responsive.text-nowrap .table td,
+.table-responsive.text-nowrap .table th {
+    white-space: nowrap;
+}
+
+.table-responsive.text-nowrap .table td:first-child,
+.table-responsive.text-nowrap .table th:first-child {
+    border-left-width: 0;
+}
+
+.table-responsive.text-nowrap .table td:last-child,
+.table-responsive.text-nowrap .table th:last-child {
+    border-right-width: 0;
+}
+
+.table-responsive.text-nowrap .table td,
+.table-responsive.text-nowrap .table th {
+    border-width: 0;
+    padding: 8px;
+}
+
+.table-responsive.text-nowrap .table td {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.table-responsive.text-nowrap .table th {
+    border-bottom-width: 2px;
+    font-weight: bold;
+}
+
+.table-responsive.text-nowrap .table td:last-child,
+.table-responsive.text-nowrap .table th:last-child {
+    text-align: center;
+}
+
+.action-cell {
+    width: 150px;
+  }

@@ -1,0 +1,75 @@
+<!-- Layout wrapper -->
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <!-- Menu -->
+    <app-superadmin-sidebar></app-superadmin-sidebar>
+    <div class="layout-page">
+      <!-- Navbar -->
+      <app-superadmin-header></app-superadmin-header>
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <div class="card">
+            <div class="d-flex justify-content-between align-items-center">
+              <h4 class="fw-bold   mb-4"><span class="text-muted fw-light">Superadmin /</span> All Offers</h4>
+            </div>
+            <div class="table-responsive text-nowrap">
+              <table class="table table-hover">
+                <thead>
+                  <tr class="text-nowrap">
+                    <th>Offre Name</th>
+                    <th>Offre description</th>
+                    <th>Niveau etude</th>
+                    <th>Type contrat</th>
+                    <th>Type offre</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Duration</th>
+                    <th>Location</th>
+                    <th>Salary</th>
+                    <th>Payed</th>
+                    <th>Completed</th>
+                    <th>Created_at</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of dataArray | paginate: { itemsPerPage: 5, currentPage: p }">
+                    <td>{{item.titre_offre}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.niveau_etude}}</td>
+                    <td>{{item.type_contrat}}</td>
+                    <td>{{item.type_offre}}</td>
+                    <td>{{item.start_date}}</td>
+                    <td>{{item.end_date}}</td>
+                    <td>{{item.duration}}</td>
+                    <td>{{item.location}}</td>
+                    <td>{{item.salaire}}</td>
+                    <td>{{item.is_payed}}</td>
+                    <td>{{item.is_completed}}</td>
+                    <td>{{item.updated_at | date }}</td>
+
+                    <td>
+                      <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                        <i class="bx bx-dots-vertical-rounded"></i>
+                      </button>
+
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="javascript:void(0);" (click)="deleteOffre(item.id)"><i
+                            class="bx bx-trash me-1"></i>
+                          Delete</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr *ngIf="dataArray.length === 0">
+                    <td colspan="15">
+                      <div class="empty-table-message">No Data Found</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>

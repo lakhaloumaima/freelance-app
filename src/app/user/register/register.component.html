@@ -1,0 +1,165 @@
+<div>
+    <div class="modal fade" id="ModalApplyJobForm" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content apply-job-form">
+                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body pl-30 pr-30 pt-50">
+                    <div class="text-center">
+                        <p class="font-sm text-brand-2">Job Application </p>
+                        <h2 class="mt-10 mb-5 text-brand-1 text-capitalize">Start your career today</h2>
+                        <p class="font-sm text-muted mb-30">Please fill in your information and send it to the employer.
+                        </p>
+                    </div>
+                    <form class="login-register text-start mt-20 pb-30" action="#">
+                        <div class="form-group">
+                            <label class="form-label" for="input-1">Full Name *</label>
+                            <input class="form-control" id="input-1" type="text" required="" name="fullname"
+                                placeholder="Steven Job">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="input-2">Email *</label>
+                            <input class="form-control" id="input-2" type="email" required="" name="emailaddress"
+                                placeholder="stevenjob@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="number">Contact Number *</label>
+                            <input class="form-control" id="number" type="text" required="" name="phone"
+                                placeholder="(+01) 234 567 89">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="des">Description</label>
+                            <input class="form-control" id="des" type="text" required="" name="Description"
+                                placeholder="Your description...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="file">Upload Resume</label>
+                            <input class="form-control" id="file" name="resume" type="file">
+                        </div>
+                        <div class="login_footer form-group d-flex justify-content-between">
+                            <label class="cb-container">
+                                <input type="checkbox"><span class="text-small">Agree our terms and policy</span><span
+                                    class="checkmark"></span>
+                            </label><a class="text-muted" href="page-contact.html">Lean more</a>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-default hover-up w-100" type="submit" name="login">Apply Job</button>
+                        </div>
+                        <div class="text-muted text-center">Do you need support? <a href="page-contact.html">Contact
+                                Us</a></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="main">
+        <div class="container-xxl p-0">
+            <div class="container-xxl position-relative p-0">
+                <app-header></app-header>
+
+                <div class="container-xxl py-5">
+                    <div class="container py-5 px-lg-5">
+
+                        <div class="container">
+                            <div class="card o-hidden border-0 shadow-lg my-5">
+                                <div class="card-body p-0">
+                                    <div class="row">
+                                        <div class="col-lg-5 d-none d-lg-block ">
+                                            <img img [src]="registerr">
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="p-5">
+                                                <div class="text-center">
+                                                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                                </div>
+                                                <form class="user needs-validation" #f="ngForm"
+                                                    (ngSubmit)="register(f)">
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                                            <input type="text" class="form-control form-control-user"
+                                                                id="exampleFirstName" placeholder="First Name"
+                                                                name="firstname" ngModel #firstname="ngModel" required>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control form-control-user"
+                                                                id="exampleLastName" placeholder="Last Name"
+                                                                name="lastname" ngModel #lastname="ngModel" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control form-control-user"
+                                                            id="exampleInputEmail" placeholder="Email Address"
+                                                            name="email" ngModel #email="ngModel" required>
+                                                    </div>
+                                                    <div class="alert alert-danger" *ngIf="messageError">
+                                                        {{messageError}}</div>
+                                                        <div class="alert alert-danger" *ngIf="messageError3">
+                                                            {{messageError3}}</div>
+                                                    <div class="form-group">
+                                                        <select class="form-select form-select-lg mb-3" name="role"
+                                                            ngModel #role="ngModel" required
+                                                            aria-label=".form-select-lg example">
+                                                            <option  hidden value="" selected> select your Role </option>
+                                                            <option value="0">Job seeker</option>
+                                                            <option value="1">Internship</option>
+                                                            <option value="2">Freelancer</option>
+                                                            <option value="3">Entreprise</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="alert alert-danger" *ngIf="messageError2">
+                                                        {{messageError2}}</div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                                            <input type="password"
+                                                                class="form-control form-control-user"
+                                                                id="exampleInputPassword" placeholder="Password" ngModel
+                                                                #password="ngModel" required name="password" required>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <input type="password"
+                                                                class="form-control form-control-user"
+                                                                name="password_confirmation" ngModel
+                                                                #password_confirmation="ngModel" required
+                                                                id="exampleRepeatPassword" placeholder="Repeat Password"
+                                                                name="password_confirmation">
+                                                        </div>
+                                                    </div>
+                                                    <div class="alert alert-danger" *ngIf="messageError4">
+                                                        {{messageError4}}</div>
+                                                    <div class="alert alert-danger" *ngIf="messageError5">
+                                                        {{messageError5}}</div>
+                                                    <br>
+                                                    <br>
+                                                    <button  id="registerButton" type="submit" class="btn btn-primary btn-user btn-block"
+                                                        style="background-color: rgb(38, 8,158); ">
+                                                        Register Account
+                                                    </button>
+                                                    <script>
+                                                        document.getElementById('register-btn').addEventListener('click', (event) => {
+                                                            const button = event.target;
+                                                            button.disabled = true;
+                                                            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...';
+                                                        });
+                                                    </script>
+                                                </form>
+                                                <div class="text-center">
+                                                    <a class="small" routerLink="/forgot-password">Forgot Password?</a>
+                                                </div><br>
+                                                <div class="text-center">
+                                                    <a class="small" routerLink="/login">Already have an account?
+                                                        Login!</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-footer></app-footer>
+        </div>

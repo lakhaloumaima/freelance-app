@@ -1,0 +1,360 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <div class="layout-page">
+          <ng-progress #progressBar></ng-progress>
+          <div *ngIf="currentuser && currentuser.role =='employee'">
+            <app-employee-header></app-employee-header>
+          </div>
+          <div *ngIf="currentuser && currentuser.role =='stagiaire'">
+            <app-intern-header></app-intern-header>
+          </div>
+          <div *ngIf="currentuser && currentuser.role =='freelancer'">
+            <app-freelancer-header></app-freelancer-header>
+          </div>
+          <div *ngIf="currentuser && currentuser.role =='admin'">
+            <app-admin-header></app-admin-header>
+          </div>
+          <div *ngIf="currentuser && currentuser.role =='superadmin'">
+            <app-superadmin-header></app-superadmin-header>
+          </div>
+          <div *ngIf="!currentuser">
+            <app-header></app-header>
+          </div>
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <main class="main">
+                      <section class="section-box-2">
+                        <div class="container">
+                          <div class="banner-hero banner-image-single"><img src="assets/imgs/page/candidates/img.png"
+                              alt="TuniOffers"></div>
+                          <div class="box-company-profile">
+                            <div class="image-compay" *ngIf="userdatadata"><img [src]="userdatadata.user_image_url" alt="TuniOffers">
+                            </div>
+                            <div class="row mt-10">
+                              <div class="col-lg-8 col-md-12">
+                                <h5 class="f-18" *ngIf="userdatadata">{{userdatadata.firstname}} {{userdatadata.lastname}}  <span class=" ml-20">
+                                    <img class="ml-20" src="assets/imgs/page/candidates/verified.png" alt="TuniOffers">
+                                  </span></h5>
+                                <p class="mt-0 font-md color-text-paragraph-2 mb-15" *ngFor="let data of experiencedata">{{data.experience_name}}</p>
+                                <div class="card-location  mt-10 mb-15" *ngIf="userdatadata"> {{userdatadata.adress}}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="border-bottom pt-10 pb-10"></div>
+                        </div>
+                      </section>
+                      <section class="section-box mt-50">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                              <div class="content-single">
+                                <div class="tab-content">
+                                  <div class="tab-pane fade show active" id="tab-short-bio" role="tabpanel"
+                                    aria-labelledby="tab-short-bio">
+                                    <h4>About Me</h4>
+                                    <p *ngIf="userdatadata">{{userdatadata.society_description}} </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="box-related-job content-page">
+                                <br>
+                                <h3 class="mb-30">Education History</h3>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="card" *ngFor="let data of formationdata">
+                                      <div class="card-body">
+                                        <div class="row">
+                                          <div class="col-md-4">
+                                            <img alt="" style="width:150px;" title=""
+                                              src="https://icon-library.com/images/school-icon/school-icon-11.jpg"
+                                              data-original-title="Usuario">
+                                          </div>
+                                          <div class="col-md-6">
+                                            <div class="table-responsive">
+                                              <table class="table table-user-information">
+                                                <tbody>
+                                                  <tr>
+                                                    <td>
+                                                      <strong>
+                                                        <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                        School/University
+                                                      </strong>
+                                                    </td>
+                                                    <td class="text-primary">
+                                                      {{ data.ecole }}
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong>
+                                                        <span class="glyphicon glyphicon-cloud text-primary"></span>
+                                                        Start Date </strong>
+                                                    </td>
+                                                    <td class="text-primary">
+                                                      {{data.date_debut}}
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong>
+                                                        <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                                        Graduation Date </strong>
+                                                    </td>
+                                                    <td class="text-primary">
+                                                      {{data.date_fin }}
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong>
+                                                        <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                                        description  </strong>
+                                                    </td>
+                                                    <td class="text-primary">
+                                                      {{data.description }}
+                                                    </td>
+                                                  </tr>
+                                                  <tr>
+                                                    <td>
+                                                      <strong>
+                                                        <span class="glyphicon glyphicon-envelope text-primary"></span>
+                                                        diplome  </strong>
+                                                    </td>
+                                                    <td class="text-primary">
+                                                      {{data.diplome }}
+                                                    </td>
+                                                  </tr>
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <br/>
+                                <h3 class="mb-30">Experience History</h3>
+                                <div class="row" >
+                                  <div class="col-sm-12">
+                                    <div class="card" *ngFor="let data of experiencedata">
+                                      <div class="card-body" >
+                                        <h5 class="d-flex align-items-center mb-3">Experience Status</h5>
+                                        <div class="row">
+                                          <div class="row">
+                                            <div class="col-md-4">
+                                                <img alt="" height="270" style="width:220px;" title="" src="https://g.foolcdn.com/editorial/images/466511/man-working-at-a-computer_gettyimages-650066898.jpg" data-original-title="Usuario"> 
+          
+                                            </div>
+                                            <div class="col-md-6"   >
+          
+                                                <div class="table-responsive" >
+                                                <table class="table table-user-information">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <strong>
+                                                                    <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                                    entreprise
+                                                                </strong>
+                                                            </td>
+                                                            <td class="text-primary">
+                                                             {{ data.entreprise }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                              <strong>
+                                                                  <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                                                                  position held
+                                                              </strong>
+                                                          </td>
+                                                          <td class="text-primary">
+                                                           {{ data.position_held }}
+                                                          </td>
+                                                      </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <strong>
+                                                                    <span class="glyphicon glyphicon-cloud text-primary"></span>  
+                                                                    Start Date                                                      </strong>
+                                                            </td>
+                                                            <td class="text-primary">
+                                                                {{data.start_date}}
+                                                            </td>
+                                                        </tr>
+          
+                                                        <tr>
+                                                            <td>
+                                                                <strong>
+                                                                    <span class="glyphicon glyphicon-envelope text-primary"></span> 
+                                                                    End Date                                                      </strong>
+                                                            </td>
+                                                            <td class="text-primary">
+                                                              {{data.end_date  }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+          
+                                                     </tr>
+          
+                                                    </tbody>
+                                                </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <br/>
+                                <h3 class="mb-30">My Skills</h3>
+                                <div class="row" >
+                                  <div class="col-sm-12">
+                                    <div class="card"  >
+                                      <div class="card-body" >
+                                        <div class="row">
+                                            <div class="col-md-6"  *ngFor="let data of competencedata"  >
+                                              <div >
+                                                <div>
+                                                  <p >  {{data.sous_categorie_name}} </p>
+                                                    <div class="progress" style="height:30px">
+                                                      <div ngClass="progress-bar progress-bar-striped bg-{{data.color}}" [ngStyle]="{width: data.niveau+'%'}" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">  {{data.niveau}}%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 col-12 pl-40 pl-lg-15 mt-lg-30">
+                              <div class="sidebar-border">
+                                <h5 class="f-18">Overview</h5>
+                                <div class="sidebar-list-job">
+                                  <ul>
+                                    <li>
+                                      <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
+                                      <div class="sidebar-text-info">
+                                        <span class="text-description">Experience</span>
+                                        <strong *ngFor="let data of experiencedata" class="small-heading">-{{data.entreprise
+                                          }}</strong>
+          
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
+                                      <div class="sidebar-text-info">
+                                        <span class="text-description">Languages :</span>
+                                        <strong *ngFor="let data of languedata" class="small-heading">
+                                          <ul>
+                                            <li>* {{data.niveau}} in  {{data.langue.langue_name}}</li>
+                                          </ul> </strong>
+                                      </div>
+                                    </li>
+                                    <li>
+                                      <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
+                                      <div class="sidebar-text-info"><span class="text-description">Education Level</span>
+                                        <strong *ngFor="let data of formationdata" class="small-heading"> {{data.niveau_etude}}  </strong>
+          
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+          
+                              </div>
+                              <div class="sidebar-border-bg bg-right"><span class="text-grey">WE ARE</span><span
+                                  class="text-hiring">HIRING</span>
+                                <p class="font-xxs color-text-paragraph mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                  elit. Recusandae architecto</p>
+                                <div class="mt-15"><a class="btn btn-paragraph-2">Know More</a></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </main>
+                    <footer class="footer mt-50">
+                      <div class="container">
+                        <div class="row">
+                          <div class="footer-col-1 col-md-3 col-sm-12"><a><img
+                                src="./assets/imgs/template/logo-plateforme1.2.png"></a>
+                            <div class="mt-20 mb-20 font-xs color-text-paragraph-2">TuniOffers is the heart of the design community
+                              and the best resource to discover and connect with designers and jobs worldwide.</div>
+                            <div class="footer-social"><a class="icon-socials icon-facebook"></a><a
+                                class="icon-socials icon-twitter"></a><a class="icon-socials icon-linkedin"></a>
+                            </div>
+                          </div>
+                          <div class="footer-col-2 col-md-2 col-xs-6">
+                            <h6 class="mb-20">Resources</h6>
+                            <ul class="menu-footer">
+                              <li><a>About us</a></li>
+                              <li><a>Our Team</a></li>
+                              <li><a>Products</a></li>
+                              <li><a>Contact</a></li>
+                            </ul>
+                          </div>
+                          <div class="footer-col-3 col-md-2 col-xs-6">
+                            <h6 class="mb-20">Community</h6>
+                            <ul class="menu-footer">
+                              <li><a>Feature</a></li>
+                              <li><a>Pricing</a></li>
+                              <li><a>Credit</a></li>
+                              <li><a>FAQ</a></li>
+                            </ul>
+                          </div>
+                          <div class="footer-col-4 col-md-2 col-xs-6">
+                            <h6 class="mb-20">Quick links</h6>
+                            <ul class="menu-footer">
+                              <li><a>iOS</a></li>
+                              <li><a>Android</a></li>
+                              <li><a>Microsoft</a></li>
+                              <li><a>Desktop</a></li>
+                            </ul>
+                          </div>
+                          <div class="footer-col-5 col-md-2 col-xs-6">
+                            <h6 class="mb-20">More</h6>
+                            <ul class="menu-footer">
+                              <li><a>Privacy</a></li>
+                              <li><a>Help</a></li>
+                              <li><a>Terms</a></li>
+                              <li><a>FAQ</a></li>
+                            </ul>
+                          </div>
+                          <div class="footer-col-6 col-md-3 col-sm-12">
+                            <h6 class="mb-20">Download App</h6>
+                            <p class="color-text-paragraph-2 font-xs">Download our Apps and get extra 15% Discount on your first
+                              Order&mldr;!</p>
+                            <div class="mt-15"><a class="mr-5"><img src="assets/imgs/template/icons/app-store.png"
+                                  alt="joxBox"></a><a><img src="assets/imgs/template/icons/android.png" alt="joxBox"></a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="footer-bottom mt-50">
+                          <div class="row">
+                            <div class="col-md-6"><span class="font-xs color-text-paragraph">Copyright &copy; 2023. TuniOffers all
+                                right reserved</span></div>
+                            <div class="col-md-6 text-md-end text-start">
+                              <div class="footer-social"><a class="font-xs color-text-paragraph">Privacy Policy</a><a
+                                  class="font-xs color-text-paragraph mr-30 ml-30">Terms &amp; Conditions</a><a
+                                  class="font-xs color-text-paragraph">Security</a></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </footer>
+                  </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+
+

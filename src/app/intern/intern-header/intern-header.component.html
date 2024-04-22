@@ -1,0 +1,77 @@
+<header class="header sticky-bar">
+    <div class="container">
+      <div class="main-header">
+        <div class="header-left">
+          <div class="header-logo"><a class="d-flex"><img 
+                src="./assets/imgs/template/logo-plateforme1.2.png"></a></div>
+        </div>
+        <div class="header-nav">
+          <nav class="nav-main-menu">
+            <ul class="main-menu">
+              <li><a class="active" routerLink="/intern">Dashboard</a></li>
+              <li><a  routerLink="/intern-candidatures" class="menu-link">
+                My Candidatures</a></li>
+              <li><a routerLink="/intern-favorit-list" class="menu-link">My favorite list</a></li>
+              <li><a
+                [routerLink]="['/intern-profile-to-others',userdata.id]"   class="menu-link">Profile to Others</a></li>
+              <li class="has-children"><a>Enrich profile</a>
+                <ul class="sub-menu">
+                  <li><a routerLink="/intern-certifications" class="menu-link">My certifications</a></li>
+                  <li><a routerLink="/intern-trainings" class="menu-link">My Trainings</a></li>
+                  <li><a routerLink="/intern-experiences" class="menu-link">My Experiences</a></li>
+                  <li><a routerLink="/intern-linguistic-knowledges" class="menu-link">My linguistic knowledges</a></li>
+                  <li><a routerLink="/intern-skills" class="menu-link">My SKills</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span
+              class="burger-icon-mid"></span><span class="burger-icon-bottom"></span></div>
+        </div>
+        <div class="header-right">
+          <div class="block-signin">
+            <div class="header-logo" class="nav-item navbar-dropdown dropdown-user dropdown">
+              <a class="d-flex" href="javascript:void(0);" data-bs-toggle="dropdown"><img alt="TuniOffers"
+                [src]="userdata.user_image_url" class="w-px-40 h-auto rounded-circle"></a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item">
+                    <div class="d-flex">
+                      <div class="flex-shrink-0 me-3">
+                        <div class="avatar avatar-online">
+                          <img [src]="userdata.user_image_url" class="w-px-40 h-auto rounded-circle" />
+                        </div>
+                      </div>
+                      <div class="flex-grow-1">
+                        <span class="fw-semibold d-block"> {{userdata.firstname}} {{userdata.lastname}}</span>
+                        <small class="text-muted"> {{userdata.role}}</small>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/edit-intern">
+                    <i class="bx bx-user me-2"></i>
+                    <span class="align-middle" >My Profile</span>
+                  </a>
+                </li>
+
+                <li>
+                  <div class="dropdown-divider"></div>
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)= "logout()">
+                    <i class="bx bx-power-off me-2"></i>
+                    <span class="align-middle">Log Out</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>

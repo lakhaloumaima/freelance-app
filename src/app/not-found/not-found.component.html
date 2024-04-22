@@ -1,0 +1,40 @@
+<div class="container-xxl container-p-y" style="text-align: center;">
+  <br>  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <div class="misc-wrapper">
+    <h2 class="mb-2 mx-2">This Page Is Under Maintenance!</h2>
+    <p class="mb-4 mx-2">Sorry for the inconvenience but we're performing some maintenance at the moment</p>
+    <div *ngIf="currentuser && currentuser.role =='employee'">
+      <a routerLink="/employee" class="btn btn-primary">Back to home</a>
+                </div>
+                <div *ngIf="currentuser && currentuser.role =='stagiaire'">
+      <a routerLink="/intern" class="btn btn-primary">Back to home</a>
+                </div>
+                <div *ngIf="currentuser && currentuser.role =='freelancer'">
+      <a routerLink="/freelancer" class="btn btn-primary">Back to home</a>
+                </div>
+                <div *ngIf="currentuser && currentuser.role =='admin'">
+      <a routerLink="/admin" class="btn btn-primary">Back to home</a>
+                </div>
+                <div *ngIf="currentuser && currentuser.role =='superadmin'">
+      <a routerLink="/superadmin" class="btn btn-primary">Back to home</a>
+                </div>
+                <div *ngIf="!currentuser">
+      <a routerLink="" class="btn btn-primary">Back to home</a>
+                </div>
+          <div class="mt-4">
+      <img
+        src="./assets/admin/img/illustrations/girl-doing-yoga-light.png"
+        alt="girl-doing-yoga-light"
+        width="500"
+        class="img-fluid"
+        data-app-dark-img="illustrations/girl-doing-yoga-dark.png"
+        data-app-light-img="illustrations/girl-doing-yoga-light.png"
+      />
+    </div>
+  </div>
+</div>

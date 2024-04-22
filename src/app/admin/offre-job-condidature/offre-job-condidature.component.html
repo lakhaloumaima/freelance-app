@@ -1,0 +1,180 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <app-admin-sidebar></app-admin-sidebar>
+        <div class="layout-page">
+            <app-admin-header></app-admin-header>
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <!-- Main Content -->
+                    <div class="card">
+                        <h5 class="card-header">Candidatures Job Offers ({{counter}})</h5>
+                        <h5 style="color: red;">Note : If You Set an interview Date you have averge of 10 min max to access the interview room .</h5>
+
+                        <div class="table-responsive text-nowrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Profil</th>
+                                        <th>UserName</th>
+                                        <th>Condidat Email</th>
+                                        <th>Job Title</th>
+                                        <th>postulation date</th>
+                                        <th>Interview date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+
+                                    <tr *ngFor="let item of dataArray | paginate: { itemsPerPage: 10, currentPage: p } ">
+                                        <td>
+                                            <span *ngIf="item.etat == 'Interview'"
+                                            class="badge bg-label-info me-1">{{item.etat}}</span>
+                                            <span *ngIf="item.etat == 'Accepted'"
+                                                class="badge bg-label-success me-1">{{item.etat}}</span>
+                                            <span *ngIf="item.etat == 'Refused'"
+                                                class="badge bg-label-danger me-1">{{item.etat}}</span>
+                                            <span *ngIf="item.etat == 'Encours'"
+                                                class="badge bg-label-warning me-1">{{item.etat}}</span>
+
+                                        </td>
+                                        <td>
+                                            <ul
+                                                class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom"
+                                                    data-bs-placement="top" class="avatar avatar-xs pull-up"
+                                                    title="Lilian Fuller">
+                                                    <img [src]="item.user.user_image_url" alt="Avatar"
+                                                    [routerLink]="['/employee-profil-to-others',item.user.id]"
+                                                        class="rounded-circle" />
+                                                </li>
+                                            </ul>
+
+
+
+                                        </td>
+                                        <td>{{item.user.firstname}} {{item.user.lastname}}</td>
+                                        <td>{{item.user.email}}</td>
+                                        <td>{{item.offre.titre_offre}}</td>
+                                        <td>{{item.date_postulation}}</td>
+                                        <td>
+                                            <span *ngIf="item.formatted_created_at">{{item.formatted_created_at}}</span>
+                                        </td>
+
+                                        <td>
+
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item"
+                                                *ngIf="!(item.etat == 'Refused')"
+                                                [routerLink]="['/employee-profil-to-others',item.user.id]"
+                                                href="javascript:void(0);"><i
+                                                        class="bx bxs-navigation me-1"></i>
+                                                    Consulter Condidat</a>
+                                                    <a class="dropdown-item"
+                                                    *ngIf="item.etat == 'Encours' "
+                                                        (click)="getdata(item.etat,item.interview_date,item.id)"
+                                                        data-toggle="modal" data-target="#basicModal"
+                                                        href="javascript:void(0);" href="javascript:void(0);"><i
+                                                            class="bx bx-edit me-1"></i>
+                                                        Update Condidature</a>
+                                                    <a class="dropdown-item"
+                                                    *ngIf=" item.etat == 'Interview' "
+                                                        (click)="getdata(item.etat,item.interview_date,item.id)"
+                                                        data-toggle="modal" data-target="#basicModal"
+                                                        href="javascript:void(0);" href="javascript:void(0);"><i
+                                                            class="bx bx-edit me-1"></i>
+                                                        Update Interview Date</a>
+                                                        <a class="dropdown-item"
+                                                        *ngIf=" item.etat == 'Interview'"
+                                                        [routerLink]="['/interview-job-admin']"
+                                                    ><i class="bx bx-edit me-1"></i>
+                                                            Go Interview  Section</a>
+                                                <div *ngIf="item.etat == 'Refused'">
+                                                    <a class="dropdown-item" href="javascript:void(0);"
+                                                        (click)="deleteCandJob(item.id)">
+                                                        <i class="bx bx-trash me-1"></i>Delete
+                                                    </a>
+                                                </div>
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="dataArray.length === 0">
+                                        <td colspan="9">
+                                            <div class="empty-table-message">No Data Found</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="text-align:right;">
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                              </div>
+
+
+                            <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel1">Update Candidature</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form [formGroup]="update" #f="ngForm"
+                                                (ngSubmit)="updateCandJob(f); f.reset()">
+                                                <div class="form-group" *ngIf="dataCand.etat === 'Interview'">
+                                                    <label for="exampleFormControlInput1">Status </label>
+                                                    <select  class="form-control" id="exampleFormControlSelect1"
+                                                        formControlName="etat" 
+                                                        readonly style="cursor: not-allowed;"
+                                                        [(ngModel)]="dataCand.etat"
+                                                        placeholder="Select a level of study...">
+                                                        <option value="Interview">In Interview</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" *ngIf="dataCand.etat === 'Encours' ||dataCand.etat === 'Refused' ">
+                                                    <label for="exampleFormControlInput1">Status </label>
+                                                    <select  class="form-control" id="exampleFormControlSelect1"
+                                                        formControlName="etat" [(ngModel)]="dataCand.etat"
+                                                        placeholder="Select a level of study...">
+                                                        <option value="Encours">Encours</option>
+                                                        <option value="Interview">In Interview</option>
+                                                        <!--<option value="Accepted">Accepted</option>-->
+                                                        <option value="Refused">Refused</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col mb-3" *ngIf="dataCand.etat === 'Interview'">
+                                                    <label for="nameBackdrop" class="form-label">Interview Date</label>
+                                                    <input type="datetime-local" id="nameBackdrop" class="form-control"
+                                                        name="interview_date" class="form-control"[min]="minDate"
+                                                        formControlName="interview_date" placeholder="Enter Name" />
+                                                </div>
+                                                <div class="alert alert-danger" *ngIf="messageError">
+                                                    {{messageError}}</div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                        data-bs-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

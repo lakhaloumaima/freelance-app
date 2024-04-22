@@ -1,0 +1,23 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-superadmin-sidebar></app-superadmin-sidebar>
+    <div class="layout-page">
+      <app-superadmin-header></app-superadmin-header>
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <!-- Main Content -->
+          <div id="content">
+            <div class="container-fluid">
+              <div style="display: block" *ngIf="chartReady">
+                <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels"
+                  [colors]="chartColors" [options]="chartOptions" [legend]="true" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

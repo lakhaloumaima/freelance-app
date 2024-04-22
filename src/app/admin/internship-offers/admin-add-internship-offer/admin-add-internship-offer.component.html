@@ -1,0 +1,148 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+      <app-admin-sidebar></app-admin-sidebar>
+      <div class="layout-page">
+        <app-admin-header></app-admin-header>
+        <div class="content-wrapper">
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <!-- Basic Layout -->
+            <div class="row">
+              <div class="col-xl">
+                <div class="card mb-4">
+                  <div class="card-header d-flex justify-content-between align-items-center">
+                  </div>
+                  <div class="card-body">
+                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship/</span> Add New Offer</h4>
+
+                    <form [formGroup]="addinternship" #f="ngForm" (ngSubmit)="addnewInternship (f); f.reset()">
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-fullname">Offer Title</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-fullname2" class="input-group-text"><i
+                              class="bx bxs-briefcase"></i></span>
+                          <input type="text" class="form-control" id="basic-icon-default-fullname"
+                          formControlName="titre_offre" name="titre_offre"
+                            placeholder=" Your Offer" aria-label="John Doe"
+                            aria-describedby="basic-icon-default-fullname2" />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-fullname">Internship Domain</label>
+                        <select (ngModelChange)="getcategorybydomain($event)" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="domain_id" name="id">
+                        <option hidden value="" selected> select your Domain </option>
+  
+                        <option *ngFor=" let item of dataArray" [value]="item.id"> {{item.domain_name}}
+                        </option>
+                      </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-fullname">Internship Category</label>
+                        <select (ngModelChange)="getsubcategorybycategory($event)" class="form-control"
+                        id="exampleFormControlSelect1" formControlName="categorie_id" name="id">
+                        <option hidden value="" selected> select your Category </option>
+  
+                        <option *ngFor=" let item of dataArray2" [value]="item.id"> {{item.categorie_name}}
+                        </option>
+                      </select>
+                      </div>
+                      <div class="mb-3" *ngIf="dataArray3.length > 0">
+                        <label class="form-label" for="basic-icon-default-fullname">Internship Required Skills</label>
+                        <ng-multiselect-dropdown
+                        formControlName="souscategorie_id"
+                        [placeholder]="'custom placeholder'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList"
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                      >
+                      </ng-multiselect-dropdown>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-company">Offer Description</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-company2" class="input-group-text"><i
+                              class="bx bx-desktop"></i></span>
+                          <input type="text" id="basic-icon-default-company" class="form-control"
+                            placeholder="Your Offer Description" aria-label="ACME Inc."
+                            formControlName="description"
+                          name="description"
+                            aria-describedby="basic-icon-default-company2" />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-company">Level of Study</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-company2" class="input-group-text"><i
+                              class="bx bx-buildings"></i></span>
+                          <select class="form-control" id="exampleFormControlSelect1" formControlName="niveau_etude"
+                            name="niveau_etude" placeholder="Select a level of study...">
+                            <option value="Bac">BAC</option>
+                            <option value="Bac+1">BAC +1</option>
+                            <option value="Bac+2">BAC +2</option>
+                            <option value="Bac+3">BAC +3</option>
+                            <option value="Bac+4">BAC +4</option>
+                            <option value="Bac+5">BAC +5</option>
+                            <option value="Mastere">Mastère</option>
+                            <option value="Ingenieur">Ingénieur</option>
+                            <option value="PlusqueBac+5">More then Bac +5</option>
+                            <option value="Formation">Formation</option>
+                            <option value="Autre">Others</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-phone">Start Date</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-phone2" class="input-group-text"><i
+                              class="bx bxs-calendar"></i></span>
+                          <input type="date" id="basic-icon-default-phone" class="form-control phone-mask"
+                          formControlName="start_date" name="start_date"
+                          aria-describedby="basic-icon-default-phone2" />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-phone">End Date</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-phone2" class="input-group-text"><i
+                              class="bx bxs-calendar"></i></span>
+                          <input type="date" id="basic-icon-default-phone" class="form-control phone-mask"
+                          formControlName="end_date" name="end_date"
+                          aria-describedby="basic-icon-default-phone2" />
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="bx bx-money-withdraw">Paid</label>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" formControlName="is_payed" name="is_payed" value="true" id="paid-yes" (change)="onPaidChange($event)">
+                          <label class="form-check-label" for="paid-yes">Yes</label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio"  formControlName="is_payed" name="is_payed" value="false" id="paid-no" (change)="onPaidChange($event)">
+                          <label class="form-check-label" for="paid-no">No</label>
+                        </div>
+                      </div>
+                      <div class="form-group" *ngIf="showOfferPrice">
+                        <label class="form-label" for="offer_price">Offer Price:</label>
+                        <input type="number" id="offer_price" formControlName="salaire" name="salaire"  placeholder="TND">
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-phone">Location</label>
+                        <div class="input-group input-group-merge">
+                          <span id="basic-icon-default-phone2" class="input-group-text"><i class="bx bxs-location-plus"></i></span>
+                          <input type="text" id="basic-icon-default-phone" class="form-control phone-mask"
+                          formControlName="location" name="location"
+                            placeholder="Location" aria-describedby="basic-icon-default-phone2" />
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

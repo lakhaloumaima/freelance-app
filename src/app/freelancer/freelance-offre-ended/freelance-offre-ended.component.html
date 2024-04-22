@@ -1,0 +1,86 @@
+
+
+
+
+
+
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+      <div class="layout-page">
+        <app-freelancer-header></app-freelancer-header>
+        <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y">
+                  <!-- Main Content -->
+                  <div class="card">
+                      <h5 class="card-header">All Ended Freelance offers</h5>
+                      <div class="table-responsive text-nowrap">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th>Status</th>
+                              <th>Mission Title</th>
+                              <th>Mission Description</th>
+                              <th>Level Of Study</th>
+                              <th>Start Date</th>
+                              <th>end Date</th>
+                              <th>Mission Salary</th>
+                              <th>Is Completed</th>
+                              <th>Location</th>
+                              <th>Go to Work files</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody class="table-border-bottom-0">
+                            <tr *ngFor="let item of dataArray  | paginate: { itemsPerPage: 5, currentPage: p } ">
+                              <td>
+                                <span *ngIf="item.etat == 'Accepted'" class="badge bg-label-success me-1">{{item.etat}}</span>
+                              </td>
+                              <td>{{item.offre.titre_offre}}</td>
+                              <td>{{item.offre.description}}</td>
+                              <td>{{item.offre.niveau_etude}}</td>
+                              <td>{{item.offre.start_date}}</td>
+                              <td>{{item.offre.end_date}}</td>
+                              <td>{{item.offre.salaire}} TND</td>
+                              <td>
+                                <span *ngIf="item.offre.is_completed == true"
+                                  class="badge bg-label-success me-1">{{item.offre.is_completed}}</span>
+                                  <span *ngIf="item.offre.is_completed == false"
+                                  class="badge bg-label-danger me-1">{{item.offre.is_completed}}</span>
+
+                              </td>
+                              <td>{{item.offre.location}}</td>
+                              <td>
+                                <a  *ngIf="item.offre.filepath !== 'null'&& item.offre.filepath  !== '' "  (click)="navigate()" class="btn btn-success" >Go To file</a>
+                                <button *ngIf="item.offre.filepath  == 'null' || item.offre.filepath  == '' " class="btn btn-danger">No FIle Yet </button>
+                            </td>
+                              <td>
+
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                  <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+
+                                  <a class="dropdown-item" href="javascript:void(0);"
+                                    (click)="deleteEndedFreelanceOffer(item.id)"><i class="bx bx-trash me-1"></i>
+                                    Delete</a>
+                                </div>
+
+                              </td>
+                            </tr>
+                            <tr *ngIf="dataArray.length === 0">
+                              <td colspan="11">
+                                <div class="empty-table-message">No Data Found</div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div style="text-align:right;">
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

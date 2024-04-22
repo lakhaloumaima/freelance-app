@@ -1,0 +1,65 @@
+.empty-table-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 24px;
+    color: #999;
+  }
+
+
+  .table-responsive.text-nowrap .table {
+    margin-bottom: 0;
+}
+
+.table-responsive.text-nowrap .table td,
+.table-responsive.text-nowrap .table th {
+    white-space: nowrap;
+}
+
+.table-responsive.text-nowrap .table td:first-child,
+.table-responsive.text-nowrap .table th:first-child {
+    border-left-width: 0;
+}
+
+.table-responsive.text-nowrap .table td:last-child,
+.table-responsive.text-nowrap .table th:last-child {
+    border-right-width: 0;
+}
+
+.table-responsive.text-nowrap .table td,
+.table-responsive.text-nowrap .table th {
+    border-width: 0;
+    padding: 8px;
+}
+
+.table-responsive.text-nowrap .table td {
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+}
+
+.table-responsive.text-nowrap .table th {
+    border-bottom-width: 2px;
+    font-weight: bold;
+}
+
+.table-responsive.text-nowrap .table td:last-child,
+.table-responsive.text-nowrap .table th:last-child {
+    text-align: center;
+}
+
+.action-cell {
+    width: 150px;
+  }
+  .offer-description {
+    white-space: pre-line;
+    word-break: break-word;
+  }
+  .custom-table th {
+    border-top: none !important;
+    border-bottom: 1px solid #dee2e6 !important;
+  }
+  .larger-textarea {
+    height: 150px; /* Adjust the height as desired */
+  }
+  

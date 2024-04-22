@@ -1,0 +1,104 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="layout-page">
+      <app-admin-header></app-admin-header>
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+
+          <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                        All Company Offers
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        {{dataArray.allmissions}}
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i style="color: black;" class='bx bx-list-ol '></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <a routerLink='/admin-freelance-offers'>
+                          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            All Freelance Offres </div>
+                          <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            {{dataArray.freelanceoffres}}
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-auto">
+                        <i style="color: black;" class='bx bxs-briefcase-alt'></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <a routerLink='/admin-internship-offers'>
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                          Internship Offres
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          {{dataArray.stageoffres}}
+                        </div>
+                      </a>
+                      </div>
+                      <div class="col-auto">
+                        <i style="color: black;" class='bx bxs-briefcase-alt'></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <a routerLink='/admin-job-offers'>
+
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                          Work Offres </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                          {{dataArray.emploioffres}}
+                        </div>
+                      </a>
+                      </div>
+                      <div class="col-auto">
+                        <i style="color: black;" class='bx bxs-briefcase-alt'></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

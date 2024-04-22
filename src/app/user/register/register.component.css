@@ -1,0 +1,22 @@
+.btn-1{
+    background-color: #fff;
+    color: #696cff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .btn-1:hover {
+    background-color: #696cff;
+
+    color: #ffffff;
+  }
+
+  .input-group-text input[type="checkbox"] {
+    width: 10px;
+    height: 10px;
+  }
+ 

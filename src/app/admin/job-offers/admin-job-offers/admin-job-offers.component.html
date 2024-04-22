@@ -1,0 +1,166 @@
+<div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+        <app-admin-sidebar></app-admin-sidebar>
+        <div class="layout-page">
+            <app-admin-header></app-admin-header>
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <!-- Main Content -->
+                    <div class="card">
+                        <h5 class="card-header">All Company Job offers   ({{counter}})</h5>
+                        <div class="table-responsive text-nowrap">
+                          <table class="table table-hover custom-table">
+                            <thead>
+                              <tr>
+                                <th class="border-top-0">Offer Title</th>
+                                <th colspan="2" class="border-top-0">Offer Description</th>
+                                <th class="border-top-0">Offer Experience</th>
+                                <th class="border-top-0">Level Of Study</th>
+                                <th class="border-top-0">Type Of Contract</th>
+                                <th class="border-top-0">Start Date</th>
+                                <th class="border-top-0">Salary</th>
+                                <th class="border-top-0">Location</th>
+                                <th class="border-top-0">Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                              <tr *ngFor="let item of dataArray | paginate: { itemsPerPage: 5, currentPage: p } ">
+                                <td>{{item.titre_offre}}</td>
+                                <td colspan="2">
+                                  <div class="offer-description">{{item.description}}</div>
+                                </td>                                <td>
+                                  <span *ngIf="item.experience =='Begginer'">No experience/Begginer</span>
+                                  <span *ngIf="item.experience =='Junior'">0-2 Years/Junior</span>
+                                  <span *ngIf="item.experience =='Confirmed'">2-4 Years/Confirmed</span>
+                                  <span *ngIf="item.experience =='Senior'">+5 Years/Senior</span>
+
+
+
+                                </td>
+                                <td>{{item.niveau_etude}}</td>
+                                <td>{{item.type_contrat}}</td>
+                                <td>{{item.start_date}}</td>
+                                <td>{{item.salaire}} TND</td>
+                                <td>{{item.location}}</td>
+
+                                <td>
+
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                            data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="javascript:void(0);"><i
+                                                    class="bx bxs-navigation me-1"></i>
+                                                Consulter</a>
+                                            <a class="dropdown-item"
+                                            (click)="getdata(item.titre_offre,item.description,item.niveau_etude,item.type_contrat,item.start_date,item.salaire,item.location,item.experience, item.id)"
+                                            data-toggle="modal" data-target="#basicModal"
+                                            href="javascript:void(0);"><i
+                                                    class="bx bx-edit me-1"></i>
+                                                edit</a>
+                                            <a class="dropdown-item" href="javascript:void(0);" (click)="deleteJob(item.id)"><i
+                                                    class="bx bx-trash me-1"></i>
+                                                Delete</a>
+
+                                        </div>
+
+                                </td>
+                            </tr>
+
+                            </tbody>
+                          </table>
+
+                          <div style="text-align:right;">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                          </div>
+
+
+                          <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel1">Update Job</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form [formGroup]="update" #f="ngForm" (ngSubmit)="updateJob(f); f.reset()" >
+                                    <div class="form-group">
+                                      <label for="exampleFormControlInput1">Offer Title</label>
+                                      <input  type="text"  formControlName="titre_offre" [(ngModel)]="dataJob.titre_offre"  ngModel class="form-control"    required>
+
+
+                                      <label for="exampleFormControlInput1">Offer Description</label>
+                                      <textarea  type="text"  formControlName="description" [(ngModel)]="dataJob.description"  ngModel class="form-control larger-textarea"   required></textarea>
+
+
+                                      <label for="exampleFormControlInput1">Level Of Study</label>
+                                      <select class="form-control" id="exampleFormControlSelect1"  [(ngModel)]="dataJob.niveau_etude" formControlName="niveau_etude"
+                                      name="niveau_etude" placeholder="Select a level of study...">
+                                      <option value="MoinsBac">Without Bac</option>
+                                      <option value="Bac">BAC</option>
+                                      <option value="Bac+1">BAC +1</option>
+                                      <option value="Bac+2">BAC +2</option>
+                                      <option value="Bac+3">BAC +3</option>
+                                      <option value="Bac+4">BAC +4</option>
+                                      <option value="Bac+5">BAC +5</option>
+                                      <option value="Mastere">Master</option>
+                                      <option value="Ingenieur">Engeneer</option>
+                                      <option value="PlusqueBac+5">More then Bac +5</option>
+                                      <option value="Formation">Formation</option>
+                                      <option value="Autre">Others</option>
+                                    </select>
+                                    <div class="mb-3">
+                                      <label class="form-label" for="basic-icon-default-company">experience</label>
+                                      <div class="input-group input-group-merge">
+                                        <span id="basic-icon-default-company2" class="input-group-text"><i
+                                            class="bx bx-buildings"></i></span>
+                                        <select class="form-control" id="exampleFormControlSelect1" formControlName="experience" [(ngModel)]="dataJob.experience"
+                                          name="experience" placeholder="Select The Offre experience...">
+                                          <option value="Begginer">No experience/Begginer</option>
+                                          <option value="Junior">0-2 Years/Junior</option>
+                                          <option value="Confirmed">2-4 Years/Confirmed</option>
+                                          <option value="Senior">+5 Years/Senior</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                      <label for="exampleFormControlInput1">Type Of Contract</label>
+                                      <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="dataJob.type_contrat" formControlName="type_contrat"
+                                      name="type_contrat" placeholder="Select The Contract Type...">
+                                      <option value="CDI">CDI</option>
+                                      <option value="CDD">CDD</option>
+                                      <option value="CAE">CAE</option>
+                                      <option value="CUI">CUI</option>
+                                      <option value="CIE">CIE</option>
+                                      <option value="Sivp">Sivp</option>
+                                    </select>
+
+                                      <label for="exampleFormControlInput1">Start Date</label>
+                                      <input  type="date"  formControlName="start_date" [(ngModel)]="dataJob.start_date"  ngModel class="form-control"    required>
+
+                                      <label for="exampleFormControlInput1">Salary</label>
+                                      <input  type="text"  formControlName="salaire" [(ngModel)]="dataJob.salaire"  ngModel class="form-control"    required>
+
+                                      <label for="exampleFormControlInput1">Location</label>
+                                      <input  type="text"  formControlName="location" [(ngModel)]="dataJob.location"  ngModel class="form-control"    required>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                        Close
+                                      </button>
+                                      <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+
+                                  </form>
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

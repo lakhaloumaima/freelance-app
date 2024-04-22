@@ -1,0 +1,95 @@
+<div class="layout-wrapper layout-content-navbar">
+  <div class="layout-container">
+    <div class="layout-page">
+      <div *ngIf="currentuser && currentuser.role =='employee'">
+        <app-employee-header></app-employee-header>
+      </div>
+      <div *ngIf="currentuser && currentuser.role =='stagiaire'">
+        <app-intern-header></app-intern-header>
+      </div>
+      <div *ngIf="currentuser && currentuser.role =='freelancer'">
+        <app-freelancer-header></app-freelancer-header>
+      </div>
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+          <div>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#backDropModal" class="btn btn-primary">Create Interview Video Call</button>
+          </div>
+          <br>
+          <div>
+            <div id="remote-container">
+            </div>
+              <div id="local-container">
+            </div>
+          </div>
+          <main class="content">
+            <div class="container p-0">
+                <div class="row g-0">
+                  <div class="col-12 col-lg-7 col-xl-9">
+                    <div class="py-2 px-4 border-bottom d-none d-lg-block">
+                      <div class="d-flex align-items-center py-1">
+                        <div class="position-relative">
+                          <img [src]="receiver.user_image_url" class="rounded-circle mr-1"
+                             width="40" height="40">
+                        </div>
+                        <div class="flex-grow-1 pl-3">
+                          <strong>{{receiver.lastname}} {{receiver.firstname}}</strong>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div *ngFor="let message of messages | orderBy: 'created_at': 'asc'" [ngClass]="{'chat-message-right': message.sender_id === currentuser.id, 'chat-message-left': message.sender_id !== currentuser.id}">
+                      <div>
+                        <img [src]="getMessageSender(message).user_image_url" class="rounded-circle mr-1" [alt]="getMessageSender(message).firstname" width="40" height="40">
+                        <div class="text-muted small text-nowrap mt-2">{{ message.created_at | date: 'shortTime' }}</div>
+                      </div>
+                      <div class="flex-shrink-1 bg-light rounded py-2 px-3" [ngClass]="{'mr-3': message.sender_id === currentuser.id, 'ml-3': message.sender_id !== currentuser.id}">
+                        <div class="font-weight-bold mb-1">{{ getMessageSender(message).firstname }} {{ getMessageSender(message).lastname }}</div>
+                        {{ message.body }} <br>
+                      </div>
+                    </div>
+                    <div class="flex-grow-0 py-3 px-4 border-top">
+                      <div class="input-group">
+                        <form (submit)="handleSubmit($event)">
+                          <input type="text" class="form-control" name="message" placeholder="Type your message">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="mt-3">
+  <!-- Modal -->
+  <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+      <form class="modal-content" [formGroup]="conversationFormGroup" (ngSubmit)="getOrcreateConversation()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="backDropModalTitle">Generate Interview Code</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div>
+              <label>Conversation Name</label>
+              <input type="text" matInput placeholder="abcd" formControlName="name">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-primary" mat-raised-button color="primary" type="submit"
+          [disabled]="!conversationFormGroup.valid"
+          title="Get Or Create Conversation" data-bs-dismiss="modal" (click)="success()">Create Now</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
